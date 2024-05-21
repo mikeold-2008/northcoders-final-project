@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -14,6 +14,12 @@ const HomeScreen = ({ navigation }) => {
 
         <Text style={styles.title}>Welcome to TrailBlaze</Text>
         <Text style={styles.subtitle}>Here to help you start your fitness journey</Text>
+      
+        {/* <Image
+      source={require('/assets/pexels-zakaria-2827392.jpg')}
+      style={{ width: 200, height: 200 }}
+    /> */}
+
         <Button title={'Submit Recent Workout'}
         onPress={() => navigation.navigate('RecentWorkout')} />
 
