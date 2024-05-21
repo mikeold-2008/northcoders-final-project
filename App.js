@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { HomeScreen, RecentWorkout } from './src/HomeScreen';
 import SignUpForm from './src/Signup';
 import LoginForm from './src/Login';
+import Leaderboard from './src/Leaderboard';
 
 
 const Stack = createStackNavigator();
@@ -35,6 +36,12 @@ export default function App() {
           name="Signup"
           component={SignUpForm}
           options={{ title: 'SignUpForm' }}
+          containerStyle={styles.screenContainer}
+        />
+         <Stack.Screen
+          name="Leaderboard"
+          component={Leaderboard}
+          options={{ title: 'Leaderboard' }}
           containerStyle={styles.screenContainer}
         />
       </Stack.Navigator>
