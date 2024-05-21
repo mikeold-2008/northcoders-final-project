@@ -1,13 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
   return (
+
     <View style={styles.container}>
+
+<Button title={'Sign up'}
+        onPress={() => navigation.navigate('Signup')} />
+
+<Button title={'Login'}
+        onPress={() => navigation.navigate('Login')} />
+
         <Text style={styles.title}>Welcome to TrailBlaze</Text>
         <Text style={styles.subtitle}>Here to help you start your fitness journey</Text>
+      
+        {/* <Image
+      source={require('/assets/pexels-zakaria-2827392.jpg')}
+      style={{ width: 200, height: 200 }}
+    /> */}
+
         <Button title={'Submit Recent Workout'}
         onPress={() => navigation.navigate('RecentWorkout')} />
+
+<Button title={'My Current Challenges'}
+        onPress={() => navigation.navigate('CurrentChallenges')} />
+
+ <Button title={'Start new challenge'}
+        onPress={() => navigation.navigate('NewChallenge')} />
+
+<Button title={'Weekly/friends leaderboards'}
+        onPress={() => navigation.navigate('Leaderboard')} /> 
     </View>
   );
 };
