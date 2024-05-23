@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+import MyAccountButton from './MyAccount';
 
 const Leaderboard = () => {
     const data = [
@@ -8,6 +9,11 @@ const Leaderboard = () => {
         { id: 3, name: 'Player3', score: 80 },
         { id: 4, name: 'Player4', score: 70 },
         { id: 5, name: 'Player5', score: 60 },
+        { id: 6, name: 'Player6', score: 100 },
+        { id: 7, name: 'Player7', score: 90 },
+        { id: 8, name: 'Player8', score: 80 },
+        { id: 9, name: 'Player9', score: 70 },
+        { id: 10, name: 'Player10', score: 60 },
       ];
 
 
@@ -19,10 +25,12 @@ const Leaderboard = () => {
   );
 
   return (
+    
     <View style={styles.container}>
     <View style={styles.topComponent}>
       <Text style={styles.title}>Weekly Leaderboard</Text>
     </View>
+    <MyAccountButton onPress={() => navigation.navigate('MyAccount')} />
     <FlatList
       data={data}
       renderItem={renderItem}
@@ -30,6 +38,7 @@ const Leaderboard = () => {
       contentContainerStyle={styles.list}
     />
   </View>
+  
 );
 };
 
