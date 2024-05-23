@@ -1,4 +1,5 @@
 import React from 'react';
+import UserDetails from './getUsersComponent';
 import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
@@ -18,7 +19,8 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.title}>Welcome to TrailBlaze</Text>
         <Text style={styles.subtitle}>Here to help you start your fitness journey</Text>
       
-
+        <Text>UserDetails</Text>
+        
         <Button title={'Submit Recent Workout'}
         onPress={() => navigation.navigate('RecentWorkout')} />
 
