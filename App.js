@@ -2,11 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomeScreen, RecentWorkout } from './src/HomeScreen';
+import { HomeScreen } from './src/HomeScreen';
+import RecentWorkout from './src/RecentWorkout';
 import SignUpForm from './src/Signup';
 import LoginForm from './src/Login';
 import Leaderboard from './src/Leaderboard';
-
+import PersonalChallengeButton from './src/CurrentChallenges';
+import MyAccountButton from './src/MyAccount';
 
 const Stack = createStackNavigator();
 
@@ -42,6 +44,18 @@ export default function App() {
           name="Leaderboard"
           component={Leaderboard}
           options={{ title: 'Leaderboard' }}
+          containerStyle={styles.screenContainer}
+        />
+           <Stack.Screen
+          name="PersonalChallengeButton"
+          component={PersonalChallengeButton}
+          options={{ title: 'PersonalChallengeButton' }}
+          containerStyle={styles.screenContainer}
+        />
+           <Stack.Screen
+          name="MyAccountButton"
+          component={MyAccountButton}
+          options={{ title: 'MyAccountButton' }}
           containerStyle={styles.screenContainer}
         />
       </Stack.Navigator>

@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
+
+
+
   return (
 
     <View style={styles.container}>
@@ -15,16 +18,12 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.title}>Welcome to TrailBlaze</Text>
         <Text style={styles.subtitle}>Here to help you start your fitness journey</Text>
       
-        {/* <Image
-      source={require('/assets/pexels-zakaria-2827392.jpg')}
-      style={{ width: 200, height: 200 }}
-    /> */}
 
         <Button title={'Submit Recent Workout'}
         onPress={() => navigation.navigate('RecentWorkout')} />
 
 <Button title={'My Current Challenges'}
-        onPress={() => navigation.navigate('CurrentChallenges')} />
+        onPress={() => navigation.navigate('PersonalChallengeButton')} />
 
  <Button title={'Start new challenge'}
         onPress={() => navigation.navigate('NewChallenge')} />
@@ -32,24 +31,10 @@ const HomeScreen = ({ navigation }) => {
 <Button title={'Weekly/friends leaderboards'}
         onPress={() => navigation.navigate('Leaderboard')} /> 
     </View>
+
+    
   );
 };
-
-const RecentWorkout = () => {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View>
-          <Text style={styles.title}>
-            Welcome to Recent Workout
-          </Text>
-          <Button
-            title="Press me"
-            onPress={() => Alert.alert('Simple Button pressed')}
-          />
-        </View>
-      </SafeAreaView>
-    );
-  };
 
 
 
@@ -70,14 +55,23 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#555',
     },
+    button: {
+      backgroundColor: '#87CEEB',
+      paddingVertical: 15,
+      paddingHorizontal: 30,
+      borderRadius: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+  
+    },
+    buttonText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#000000',
+    },
 })
 
 
 
-export { HomeScreen, RecentWorkout };
+export { HomeScreen };
 
-//submit recent workout
-//my current challenges
-//start new challenge
-//weekly/friends leaderboards
-//my account
