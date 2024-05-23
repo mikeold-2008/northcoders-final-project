@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
+
 const MyAccountButton = ({ onPress }) => {
   return (
     <View style={styles.container}>
