@@ -15,9 +15,4 @@ const handleChallengeData = () => {
 }
 
 
-// return (
-
-
-// )
-
 }
