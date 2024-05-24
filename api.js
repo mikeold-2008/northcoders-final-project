@@ -52,6 +52,15 @@ const postSoloChallenge = (ChallengeData) => {
     })
 }
 
+const getSolo = (id) => {
+  return axios
+    .get(`https://trailblaze-api-prod.onrender.com/challenges/solo/${id}`)
+    .then(response => {
+     return response.data
+    })
+    .catch(error => {
+      (error)
+    })
+}
 
-
-export { getUsers, getAuthUser, postSoloChallenge };
+export { getUsers, getAuthUser, postSoloChallenge, getSolo };
