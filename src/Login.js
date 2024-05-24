@@ -31,22 +31,6 @@ const LoginForm = () => {
   //may need to add in something here for storing user data locally
 
   return (
-    // <View style={styles.container}>
-    //   <TextInput
-    //     style={styles.input}
-    //     placeholder="Email"
-    //     value={email}
-    //     onChangeText={setEmail}
-    //   />
-    //   <TextInput
-    //     style={styles.input}
-    //     placeholder="Password"
-    //     value={password}
-    //     onChangeText={setPassword}
-    //     secureTextEntry
-    //   />
-    //   <Button title="Login" onPress={handleLogin} />
-    // </View>
 
     <View style={styles.container}>
       <TextInput

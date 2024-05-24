@@ -16,18 +16,6 @@ const getUsers = (id) => {
 
 //GET https://trailblaze-api-prod.onrender.com/users/auth/:email/:token
 
-// const getAuthUser = async (email, token) => {
-//     console.log("in get auth user function")
-//     return axios
-//     .get(`https://trailblaze-api-prod.onrender.com/users/auth/${email}/${token}`)
-//     .then(response => {
-//         return response.data
-//     })
-//     .catch(error => {
-//         (error)
-//     })
-// }
-
 const getAuthUser = async (email, token) => {
     console.log("in get auth user function");
     try {
@@ -43,7 +31,7 @@ const getAuthUser = async (email, token) => {
 
 const postSoloChallenge = (ChallengeData) => {
     return axios
-    .get(`https://trailblaze-api-prod.onrender.com/challenges/solo`, ChallengeData)
+    .get(`https://trailblaze-api-prod.onrender.com/challenges/solo/${id}`, ChallengeData)
     .then(response => {
         return response.data
     })
