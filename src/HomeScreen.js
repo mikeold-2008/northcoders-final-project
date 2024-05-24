@@ -1,9 +1,31 @@
 import React from 'react';
 import UserDetails from './getUsersComponent';
 import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
+import { useState,useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = ({ navigation }) => {
+  const [userId,setUserId] = useState(null)
 
+  const load = async () =>{
+    try{
+      let id = await AsyncStorage.getItem("userData")
+      setUserId(JSON.parse(id).id)
+    }
+    catch(err){
+      alert(err)
+    }
+  }
+
+  useEffect(()=>{
+    load()
+  },[])
+  // const [userId, setUserId] = useState(null)
+
+  // useEffect(()=>{
+  //   let id = AsyncStorage.getItem("userData")
+  //   setUserId(id)
+  // },[])
 
 
   return (
@@ -16,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
 <Button title={'Login'}
         onPress={() => navigation.navigate('Login')} />
 
-        <Text style={styles.title}>Welcome to TrailBlaze</Text>
+        <Text style={styles.title}>Welcome to TrailBlaze {userId}</Text>
         <Text style={styles.subtitle}>Here to help you start your fitness journey</Text>
       
         <Text>UserDetails</Text>

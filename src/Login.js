@@ -5,6 +5,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //AsyncStorage
 
 
+
+  const save = async (userData) =>{
+    try{
+      await AsyncStorage.setItem('userData', JSON.stringify(userData));
+    }
+    catch(err){
+
+    }
+  }
+
+
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [userid, setUserid] = useState('');
@@ -17,9 +28,10 @@ const LoginForm = () => {
     getAuthUser(email, password)
     .then((response) => {
       // console.log(response)
-      const userData = response.data;
-      AsyncStorage.setItem('userData', JSON.stringify(userData));
-
+      // const userData = JSON.stringify(response);
+          //  console.log("user data before setting storage: ",userData)
+          save(response)
+    // AsyncStorage.setItem('userData', JSON.stringify(userData));
 
       setError(null)
     })
