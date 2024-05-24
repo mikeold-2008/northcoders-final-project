@@ -3,6 +3,7 @@ import UserDetails from './getUsersComponent';
 import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
 import { useState,useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Phoenix from './Phoenix';
 
 const HomeScreen = ({ navigation }) => {
   const [userId,setUserId] = useState(null)
@@ -20,18 +21,12 @@ const HomeScreen = ({ navigation }) => {
   useEffect(()=>{
     load()
   },[])
-  // const [userId, setUserId] = useState(null)
-
-  // useEffect(()=>{
-  //   let id = AsyncStorage.getItem("userData")
-  //   setUserId(id)
-  // },[])
-
 
   return (
 
     <View style={styles.container}>
-
+<Text {...userId}/>
+<Phoenix />
 <Button title={'Sign up'}
         onPress={() => navigation.navigate('Signup')} />
 
@@ -39,9 +34,8 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate('Login')} />
 
         <Text style={styles.title}>Welcome to TrailBlaze {userId}</Text>
+        
         <Text style={styles.subtitle}>Here to help you start your fitness journey</Text>
-      
-        <Text>UserDetails</Text>
         
         <Button title={'Submit Recent Workout'}
         onPress={() => navigation.navigate('RecentWorkout')} />

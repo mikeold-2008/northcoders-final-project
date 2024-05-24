@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import MyAccountButton from './MyAccount';
+import SoloUserCallenge from './SoloCurrentChallenge';
 
 
   const PersonalChallengeButton = ({ score, status, onPress }) => {
@@ -12,6 +13,7 @@ import MyAccountButton from './MyAccount';
           <Text style={styles.scoreText}>Score: {score}</Text>
           <Text style={styles.statusText}>Status: {status}</Text>
         </TouchableOpacity>
+        <SoloUserCallenge />
       </View>
     );
   };
