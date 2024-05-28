@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate('PersonalChallengeButton')} />
 
  <Button title={'Start new challenge'}
-        onPress={() => navigation.navigate('NewChallenge')} />
+        onPress={() => navigation.navigate('NewChal')} />
 
 <Button title={'Weekly/friends leaderboards'}
         onPress={() => navigation.navigate('Leaderboard')} /> 
