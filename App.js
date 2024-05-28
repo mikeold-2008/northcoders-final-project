@@ -9,6 +9,8 @@ import LoginForm from './src/Login';
 import Leaderboard from './src/Leaderboard';
 import PersonalChallengeButton from './src/CurrentChallenges';
 import MyAccountButton from './src/MyAccount';
+import NewChal from './src/NewChallenge';
+import AgainstSelfScreen from './src/AgainstSelf';
 
 const Stack = createStackNavigator();
 
@@ -58,6 +60,15 @@ export default function App() {
           options={{ title: 'MyAccountButton' }}
           containerStyle={styles.screenContainer}
         />
+        <Stack.Screen
+          name="NewChal"
+          component={NewChal}
+          options={{ title: 'New Challenge' }}
+          containerStyle={styles.screenContainer}
+        />
+        <Stack.Screen 
+        name="AgainstSelf" 
+        component={AgainstSelfScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
