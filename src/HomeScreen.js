@@ -25,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
   return (
 
     <View style={styles.container}>
-<Text {...userId}/>
+
 <Phoenix />
 <Button title={'Sign up'}
         onPress={() => navigation.navigate('Signup')} />
@@ -33,7 +33,7 @@ const HomeScreen = ({ navigation }) => {
 <Button title={'Login'}
         onPress={() => navigation.navigate('Login')} />
 
-        <Text style={styles.title}>Welcome to TrailBlaze {userId}</Text>
+        <Text style={styles.title}>Welcome to TrailBlaze </Text>
         
         <Text style={styles.subtitle}>Here to help you start your fitness journey</Text>
         
