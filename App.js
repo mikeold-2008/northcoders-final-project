@@ -7,6 +7,7 @@ import RecentWorkout from './src/RecentWorkout';
 import SignUpForm from './src/Signup';
 import LoginForm from './src/Login';
 import Leaderboard from './src/Leaderboard';
+import Dashboard from './src/Dashboard'
 import PersonalChallengeButton from './src/CurrentChallenges';
 import MyAccountButton from './src/MyAccount';
 
@@ -56,6 +57,12 @@ export default function App() {
           name="MyAccountButton"
           component={MyAccountButton}
           options={{ title: 'MyAccountButton' }}
+          containerStyle={styles.screenContainer}
+        />
+          <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{ title: 'Dashboard' }}
           containerStyle={styles.screenContainer}
         />
       </Stack.Navigator>
