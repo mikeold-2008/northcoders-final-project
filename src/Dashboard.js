@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Phoenix from './Phoenix';
 import { getUsers } from '../api';
 
-const Dashboard = () => {
+const Dashboard = ({navigation}) => {
     const [userId,setUserId] = useState(null)
     const [userFirstName, setUserFirstName] = useState("")
 

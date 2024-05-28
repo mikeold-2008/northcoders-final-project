@@ -37,17 +37,6 @@ const HomeScreen = ({ navigation }) => {
         
         <Text style={styles.subtitle}>Here to help you start your fitness journey</Text>
         
-        <Button title={'Submit Recent Workout'}
-        onPress={() => navigation.navigate('RecentWorkout')} />
-
-<Button title={'My Current Challenges'}
-        onPress={() => navigation.navigate('PersonalChallengeButton')} />
-
- <Button title={'Start new challenge'}
-        onPress={() => navigation.navigate('NewChal')} />
-
-<Button title={'Weekly/friends leaderboards'}
-        onPress={() => navigation.navigate('Leaderboard')} /> 
     </View>
 
     
