@@ -14,8 +14,8 @@ const Dashboard = ({navigation}) => {
         try{
           let id = await AsyncStorage.getItem("userData")
           setUserId(JSON.parse(id).id)
-            let data = await getUsers(JSON.parse(id).id)
-            setUserFirstName(data.firstName)
+          let data = await getUsers(JSON.parse(id).id)
+          setUserFirstName(data.firstName)
         }
         catch(err){
           alert(err)
@@ -41,6 +41,10 @@ return (<>
 
 <Button title={'Weekly/friends leaderboards'}
         onPress={() => navigation.navigate('Leaderboard')} /> 
+
+<Button title={`${userFirstName}'s account`}
+        onPress={() => navigation.navigate('MyAccount')} /> 
+
 </View></>
 )
 
