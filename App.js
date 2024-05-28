@@ -7,6 +7,7 @@ import RecentWorkout from './src/RecentWorkout';
 import SignUpForm from './src/Signup';
 import LoginForm from './src/Login';
 import Leaderboard from './src/Leaderboard';
+import Dashboard from './src/Dashboard'
 import PersonalChallengeButton from './src/CurrentChallenges';
 import MyAccountButton from './src/MyAccount';
 import NewChal from './src/NewChallenge';
@@ -69,6 +70,14 @@ export default function App() {
         <Stack.Screen 
         name="AgainstSelf" 
         component={AgainstSelfScreen} />
+                    
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{ title: 'Dashboard' }}
+          containerStyle={styles.screenContainer}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
