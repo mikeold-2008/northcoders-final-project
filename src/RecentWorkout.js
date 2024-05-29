@@ -17,7 +17,7 @@ import axios from "axios";
 import Dropdown from "./Dropdown";
 import { inline } from "react-native-web/dist/cjs/exports/StyleSheet/compiler";
 
-const RecentWorkout = () => {
+const RecentWorkout = ({navigation}) => {
   const [recentActivities, setRecentActivities] = useState([]);
   const [addActivity, setAddActivity] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -61,8 +61,9 @@ const RecentWorkout = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Text style={styles.title}>History</Text>
-        <MyAccountButton onPress={() => navigation.navigate("MyAccount")} />
+        
+    <Button title={`My Account`}
+          onPress={() => navigation.navigate('MyAccountScreen')} /> 
 
         {recentActivities.length ? (
           <FlatList
