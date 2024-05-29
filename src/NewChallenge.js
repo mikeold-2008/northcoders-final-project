@@ -31,7 +31,9 @@ const NewChal = ({navigation}) => {
 
     return (
       <SafeAreaView style={styles.container}>
-            <MyAccountButton onPress={() => navigation.navigate('MyAccount')} />
+            
+    <Button title={`My Account`}
+          onPress={() => navigation.navigate('MyAccountScreen')} /> 
 
         <View>
           <Text style={styles.title}>
