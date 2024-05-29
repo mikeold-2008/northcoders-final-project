@@ -45,7 +45,8 @@ const HomeScreen = ({ navigation }) => {
     <Text style={styles.buttonText}>Login 🔓</Text>
   </TouchableOpacity>
 
-  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RecentWorkout')}>
+
+  {/* <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RecentWorkout')}>
     <Text style={styles.buttonText}>Submit Recent Workout 🏃‍♂️</Text>
   </TouchableOpacity>
 
@@ -59,7 +60,7 @@ const HomeScreen = ({ navigation }) => {
 
   <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Leaderboard')}>
     <Text style={styles.buttonText}>Weekly/friends leaderboards 🏆</Text>
-  </TouchableOpacity>
+  </TouchableOpacity> */}
 </View>
 </SafeAreaView>
 );  
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
       padding: 20,
     },
     header: {
-      marginBottom: 130,
+      marginBottom: 170,
       alignItems: 'center',
     },
     headerText: {
