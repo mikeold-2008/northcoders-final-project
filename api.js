@@ -104,4 +104,16 @@ const postSolo = (id, exercise_name, duration, distance) => {
   });
 };
 
-export { getUsers, getAuthUser, postSoloChallenge, getSolo, postUser, getDuo, postDuo, postSolo };
+const getAllActivities = async() =>{
+  try{
+    const response = await axios.get(`https://trailblaze-api-prod.onrender.com/activities`);
+    return response.data;
+  }
+  catch(error){
+    throw error;
+  }
+}
+
+
+
+export { getUsers, getAuthUser, postSoloChallenge, getSolo, postUser, getDuo, postDuo, postSolo, getAllActivities };
