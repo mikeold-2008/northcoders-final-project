@@ -13,6 +13,9 @@ import MyAccountButton from './src/MyAccount';
 import NewChal from './src/NewChallenge';
 import AgainstSelfScreen from './src/AgainstSelf';
 import MyAccountScreen from './src/MyAccountScreen';
+import CreateDuoChallenge from './src/DuoChallengeCreate';
+import DuoChallenge from './src/DuoCurrentChallenge';
+import CreateSoloChallenge from './src/SoloChallengeCreate';
 
 const Stack = createStackNavigator();
 
@@ -71,6 +74,18 @@ export default function App() {
         <Stack.Screen 
         name="AgainstSelf" 
         component={AgainstSelfScreen} />
+
+        <Stack.Screen 
+        name="AgainstFriend" 
+        component={CreateDuoChallenge} />
+
+        <Stack.Screen 
+        name="CurrentDuoChallenge" 
+        component={DuoChallenge} />
+
+        <Stack.Screen 
+        name="CreateSoloChallenge" 
+        component={CreateSoloChallenge} />
                     
         <Stack.Screen
           name="Dashboard"
