@@ -52,6 +52,8 @@ useEffect(()=>{
       <Text style={styles.title}>My Account</Text>
       <Text style={styles.summaryText}>Name: {userFirstName} {userLastName}</Text>
       <Text style={styles.summaryText}>Email: {userEmail} </Text>
+
+      <Text style={styles.summaryText}>My Current Challenges:  </Text>
       {/* <WeeklyStepChallenge /> */}
 
 

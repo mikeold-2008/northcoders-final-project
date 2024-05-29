@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 import MyAccountButton from './MyAccount';
 import { getAllActivities, getUsers } from '../api';
 import {useEffect,useState} from 'react';
+import MyAccountScreen from './MyAccountScreen';
 
 
-const Leaderboard = () => {
+const Leaderboard = ({navigation}) => {
   const [activityList,setActivityList] = useState([])
   let walkingList = []
   let runningList = []
@@ -168,8 +169,9 @@ const Leaderboard = () => {
     <View style={styles.topComponent}>
       <Text style={styles.title}>Weekly Leaderboard</Text>
     </View>
-    <MyAccountButton onPress={() => navigation.navigate('MyAccount')} />
 
+    <Button title={`My Account`}
+          onPress={() => navigation.navigate('MyAccountScreen')} /> 
     
     <Text style={styles.header}>Top Walkers This Week (km)</Text>
     <FlatList
@@ -232,8 +234,13 @@ const styles = StyleSheet.create({
   header:{
     fontSize: 20,
     fontWeight: 'bold'
-  }
-
+  },
+  Button:{
+  top: 0,
+  right: 1,
+  padding: 10,
+  alignItems: 'right',
+}
 });
 
 export default Leaderboard;
