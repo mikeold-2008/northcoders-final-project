@@ -63,6 +63,24 @@ const HomeScreen = ({ navigation }) => {
 </View>
 </SafeAreaView>
 );
+
+    <View style={styles.container}>
+
+<Phoenix />
+<Button title={'Sign up'}
+        onPress={() => navigation.navigate('Signup')} />
+
+<Button title={'Login'}
+        onPress={() => navigation.navigate('Login')} />
+
+        <Text style={styles.title}>Welcome to TrailBlaze </Text>
+        
+        <Text style={styles.subtitle}>Here to help you start your fitness journey</Text>
+        
+    </View>
+
+    
+  );
 };
 
 

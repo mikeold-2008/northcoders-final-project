@@ -22,7 +22,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
   }
 
 
-const LoginForm = () => {
+const LoginForm = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
@@ -35,6 +35,7 @@ const LoginForm = () => {
       console.log(response)
       save(response)
       setError(null)
+      navigation.navigate('Dashboard')
     })
     .catch((error)=>{
       console.log("ERROR",error)

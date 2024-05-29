@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Phoenix from './Phoenix';
 import { getUsers } from '../api';
 
+
 const Dashboard = ({ navigation }) => {
     const [userId,setUserId] = useState(null)
     const [userFirstName, setUserFirstName] = useState("")
@@ -14,8 +15,8 @@ const Dashboard = ({ navigation }) => {
         try{
           let id = await AsyncStorage.getItem("userData")
           setUserId(JSON.parse(id).id)
-            let data = await getUsers(JSON.parse(id).id)
-            setUserFirstName(data.firstName)
+          let data = await getUsers(JSON.parse(id).id)
+          setUserFirstName(data.firstName)
         }
         catch(err){
           alert(err)
@@ -41,6 +42,10 @@ return (<>
 
 <Button title={'Weekly/friends leaderboards'}
         onPress={() => navigation.navigate('Leaderboard')} /> 
+
+<Button title={`${userFirstName}'s account`}
+        onPress={() => navigation.navigate('MyAccount')} /> 
+
 </View></>
 )
 
