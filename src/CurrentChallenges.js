@@ -4,7 +4,7 @@ import MyAccountButton from './MyAccount';
 import SoloUserCallenge from './SoloCurrentChallenge';
 
 
-  const PersonalChallengeButton = ({ score, status, onPress }) => {
+  const PersonalChallengeButton = ({ score, status, onPress, navigation }) => {
     return (
       <View style={styles.container}>
         <MyAccountButton onPress={() => navigation.navigate('MyAccount')} />
@@ -14,6 +14,10 @@ import SoloUserCallenge from './SoloCurrentChallenge';
           <Text style={styles.statusText}>Status: {status}</Text>
         </TouchableOpacity>
         <SoloUserCallenge />
+        <Button
+        onPress={() => navigation.navigate('CurrentDuoChallenge')}
+        title="Current Duo Challenge"
+      />
       </View>
     );
   };

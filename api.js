@@ -65,7 +65,44 @@ const postUser = async (userData) => {
   }
 }
 
+const getDuo = (id) => {
+  return axios
+    .get(`https://trailblaze-api-prod.onrender.com/challenges/dual/${id}`)
+    .then(response => {
+     return response.data
+    })
+    .catch(error => {
+      (error)
+    })
+}
 
+const postDuo = (proposer_id, accepter_id, exercise_name, duration) => {
+  return axios.post(`https://trailblaze-api-prod.onrender.com/challenges/dual`, {
+    proposer_id: proposer_id,
+    accepter_id: accepter_id,
+    exercise_name: exercise_name,
+    duration: duration,
+  }).then((response) => {
+    return response;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+};
+
+const postSolo = (id, exercise_name, duration, distance) => {
+  return axios.post(`https://trailblaze-api-prod.onrender.com/challenges/solo`, {
+    id: id,
+    exercise_name: exercise_name,
+    duration: duration,
+    distance: distance
+  }).then((response) => {
+    return response;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+};
 
 const getAllActivities = async() =>{
   try{
@@ -77,4 +114,6 @@ const getAllActivities = async() =>{
   }
 }
 
-export { getUsers, getAuthUser, postSoloChallenge, getSolo, postUser, getAllActivities };
+
+
+export { getUsers, getAuthUser, postSoloChallenge, getSolo, postUser, getDuo, postDuo, postSolo, getAllActivities };
