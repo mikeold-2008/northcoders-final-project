@@ -66,4 +66,15 @@ const postUser = async (userData) => {
 }
 
 
-export { getUsers, getAuthUser, postSoloChallenge, getSolo, postUser };
+
+const getAllActivities = async() =>{
+  try{
+    const response = await axios.get(`https://trailblaze-api-prod.onrender.com/activities`);
+    return response.data;
+  }
+  catch(error){
+    throw error;
+  }
+}
+
+export { getUsers, getAuthUser, postSoloChallenge, getSolo, postUser, getAllActivities };
