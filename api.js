@@ -90,9 +90,9 @@ const postDuo = (proposer_id, accepter_id, exercise_name, duration) => {
   });
 };
 
-const postSolo = (id, exercise_name, duration, distance) => {
+const postSolo = (user_id, exercise_name, duration, distance) => {
   return axios.post(`https://trailblaze-api-prod.onrender.com/challenges/solo`, {
-    id: id,
+    user_id: user_id,
     exercise_name: exercise_name,
     duration: duration,
     distance: distance

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { postDuo } from '../api';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const CreateDuoChallenge = ({ onChallenge }) => {
     const [proposerId, setProposerId] = useState(null);
     const [acceptorId, setAcceptorId] = useState('');
-    const [exerciseName, setExerciseName] = useState('walking');
+    const [exerciseName, setExerciseName] = useState('');
     const [duration, setDuration] = useState(7);
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
@@ -29,7 +30,7 @@ const CreateDuoChallenge = ({ onChallenge }) => {
     const handleDuoChallenge = async () => {
         try {
             await postDuo(proposerId, acceptorId, exerciseName, duration);
-            setMessage('');
+            setMessage('Challenge sent successfully!');
             setError('');
             onChallenge();
         } catch (error) {
@@ -38,11 +39,23 @@ const CreateDuoChallenge = ({ onChallenge }) => {
         }
     };
 
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(exerciseName);
+    const [items, setItems] = useState([
+      { label: 'Walking', value: 'Walking' },
+      { label: 'Running', value: 'Running' },
+      { label: 'Cycling', value: 'Cycling' },
+    ]);
+
+    useEffect(() => {
+        setExerciseName(value);
+    }, [value]);
+
     return (
         <View style={styles.container}>
             <View style={styles.topComponent}>
                 {error ? (
-                    <Text style={{ color: 'red' }}>{error}</Text>
+                    <Text style={{ color: 'green' }}>{error}</Text>
                 ) : (
                     <Text style={{ color: 'green' }}>{message}</Text>
                 )}
@@ -53,6 +66,14 @@ const CreateDuoChallenge = ({ onChallenge }) => {
                 placeholder="Acceptor Id"
                 value={acceptorId}
                 onChangeText={setAcceptorId}
+            />
+            <DropDownPicker
+                open={open}
+                value={value}
+                items={items}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setItems}
             />
             <Button title="Challenge" onPress={handleDuoChallenge} />
         </View>
