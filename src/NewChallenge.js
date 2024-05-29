@@ -19,13 +19,13 @@ const NewChal = ({navigation}) => {
         title="Against Random"
       />
        <Button
-        onPress={() => { alert('Button pressed!'); }}
+        onPress={() => navigation.navigate('AgainstFriend')}
         title="Against friend"
       />
 
 <Button
         title="Against self"
-        onPress={() => navigation.navigate('AgainstSelf')}
+        onPress={() => navigation.navigate('CreateSoloChallenge')}
       />
           </Text>
         </View>
