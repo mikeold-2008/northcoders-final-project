@@ -11,12 +11,20 @@ import SoloUserCallenge from './SoloCurrentChallenge';
     <Button title={`My Account`}
           onPress={() => navigation.navigate('MyAccountScreen')} /> 
 
-        <TouchableOpacity onPress={onPress} style={styles.button}>
+        {/* <TouchableOpacity onPress={onPress} style={styles.button}>
           <Text style={styles.buttonText}>My Personal Challenge</Text>
           <Text style={styles.scoreText}>Score: {score}</Text>
           <Text style={styles.statusText}>Status: {status}</Text>
         </TouchableOpacity>
-        <SoloUserCallenge />
+        <SoloUserCallenge /> */}
+
+
+        <Button
+        onPress={() => navigation.navigate('SoloCurrentChallenge')}
+        title="Current Solo Challenge"
+      />
+
+
         <Button
         onPress={() => navigation.navigate('CurrentDuoChallenge')}
         title="Current Duo Challenge"
