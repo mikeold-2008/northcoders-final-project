@@ -1,16 +1,23 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import MyAccountScreen from './MyAccountScreen';
 
-
-const MyAccountButton = ({ onPress }) => {
-  return (
-    <View style={styles.container}>
-    <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Text style={styles.buttonText}>My Account</Text>
-    </TouchableOpacity>
-    </View>
-  );
-};
+// const MyAccountButton = ({ onPress }) => {
+//   return (
+    // <View style={styles.container}>
+    // <TouchableOpacity onPress={onPress} style={styles.button}>
+    //   <Text style={styles.buttonText}>My Account</Text>
+    // </TouchableOpacity>
+    // </View>
+    const MyAccountButton = ({ navigation }) => {
+      return (
+        <View style={styles.container}>
+          <TouchableOpacity onPress={() => navigation.navigate('MyAccountScreen')} style={styles.button}>
+            <Text style={styles.buttonText}>My Account</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    };
 
 const styles = StyleSheet.create({
   button: {
