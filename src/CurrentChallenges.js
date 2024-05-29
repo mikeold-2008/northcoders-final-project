@@ -10,7 +10,7 @@ import SoloUserCallenge from './SoloCurrentChallenge';
         
     <Button title={`My Account`}
           onPress={() => navigation.navigate('MyAccountScreen')} /> 
-          
+
         <TouchableOpacity onPress={onPress} style={styles.button}>
           <Text style={styles.buttonText}>My Personal Challenge</Text>
           <Text style={styles.scoreText}>Score: {score}</Text>
