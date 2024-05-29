@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,  ImageBackground, Image, TextInput, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 import { getSolo } from '../api';
 
 const SoloUserChallenge = () => {
     const [userId, setUserId] = useState(null);
     const [soloUser, setSoloUser] = useState(null);
+
+    const [steps, setSteps] = useState(0);
+    const [spritePosition, setSpritePosition] = useState(0)
+
+const handleMove = () => {
+    const newSteps = parseInt(steps, 10);
+    const newPosition = (newSteps / 10) * 100;
+    setSpritePosition(newPosition);
+}
 
     const loadUserId = async () => {
         try {
@@ -42,11 +51,38 @@ const SoloUserChallenge = () => {
 
     return (
         <View style={styles.container}>
-            {soloUser.map((solo) => {
+            {soloUser.map((solo,index) => {        
                 console.log(solo.exercise_name)
-                return<Text style={styles.text}>
-                    Exercise: {solo.exercise_name}</Text>})
+                return (<><Text key={index} style={styles.text}>
+                    Exercise: {solo.exercise_name}</Text>
+                    <Text style={styles.text}>Target: {solo.distance} km</Text>
+                    </>)
+                    
+                })
         }
+
+
+<ImageBackground 
+    source={require('../assets/track.jpg')}
+    style={styles.background}>
+      <View style={styles.overlay}>
+          <Image 
+            source={require('../assets/Walking.png')} 
+            style={[styles.sprite, { left: `${spritePosition}%` }]} 
+          />
+     <Text style={styles.text}>Step Challenge!</Text>
+      <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter steps"
+              keyboardType="numeric"
+              value={steps.toString()}
+              onChangeText={text => setSteps(text)}
+            />
+            <Button title="Move" onPress={handleMove} />
+          </View>
+    </View>
+    </ImageBackground>
             
         </View>
     );

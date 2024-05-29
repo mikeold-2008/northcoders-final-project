@@ -15,7 +15,7 @@ import MyAccountScreen from './src/MyAccountScreen';
 import CreateDuoChallenge from './src/DuoChallengeCreate';
 import DuoChallenge from './src/DuoCurrentChallenge';
 import CreateSoloChallenge from './src/SoloChallengeCreate';
-
+import SoloUserChallenge from './src/SoloCurrentChallenge';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -99,6 +99,10 @@ export default function App() {
           options={{ title: 'MyAccountScreen' }}
           containerStyle={styles.screenContainer}
         />
+
+        <Stack.Screen 
+        name="SoloCurrentChallenge" 
+        component={SoloUserChallenge} />
 
       </Stack.Navigator>
     </NavigationContainer>
