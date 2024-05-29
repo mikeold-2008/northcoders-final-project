@@ -29,7 +29,7 @@ const RecentWorkout = () => {
 
   useEffect(() => {
     axios
-      .get("https://trailblaze-api-prod.onrender.com/activities/user/2")
+      .get("https://trailblaze-api-prod.onrender.com/activities/user/10")
       .then((fetchedActivity) => {
         setRecentActivities(fetchedActivity.data);
       });
