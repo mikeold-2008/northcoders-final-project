@@ -9,7 +9,6 @@ import LoginForm from './src/Login';
 import Leaderboard from './src/Leaderboard';
 import Dashboard from './src/Dashboard'
 import PersonalChallengeButton from './src/CurrentChallenges';
-import MyAccountButton from './src/MyAccount';
 import NewChal from './src/NewChallenge';
 import AgainstSelfScreen from './src/AgainstSelf';
 import MyAccountScreen from './src/MyAccountScreen';
@@ -59,12 +58,12 @@ export default function App() {
           options={{ title: 'PersonalChallengeButton' }}
           containerStyle={styles.screenContainer}
         />
-           <Stack.Screen
+           {/* <Stack.Screen
           name="MyAccountButton"
           component={MyAccountButton}
           options={{ title: 'MyAccountButton' }}
           containerStyle={styles.screenContainer}
-        />
+        /> */}
         <Stack.Screen
           name="NewChal"
           component={NewChal}
