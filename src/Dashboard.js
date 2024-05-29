@@ -51,7 +51,7 @@ const Dashboard = ({ navigation }) => {
   
   
   <Button title={`${userFirstName}'s account 🔐`}
-          onPress={() => navigation.navigate('MyAccount')} /> 
+          onPress={() => navigation.navigate('MyAccountScreen')} /> 
   
   </View></>
   )
