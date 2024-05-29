@@ -1,6 +1,6 @@
 import React from 'react';
 import UserDetails from './getUsersComponent';
-import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image, TouchableOpacity } from 'react-native';
 import { useState,useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Phoenix from './Phoenix';
@@ -24,6 +24,46 @@ const HomeScreen = ({ navigation }) => {
 
   return (
 
+<SafeAreaView style={styles.container}>
+  <View>
+<View style={styles.header}>
+  <Text style={styles.headerText}>Welcome to TrailBlaze </Text>
+  <Text style={styles.subHeaderText}>Here to help you start your fitness journey</Text>
+</View>
+<Phoenix />
+<Text {...userId}/>
+<Text>
+{'\n'}
+{'\n'}</Text>
+</View>
+<View style={styles.buttonContainer}>
+  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Signup')}>
+    <Text style={styles.buttonText}>Sign up 📝</Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+    <Text style={styles.buttonText}>Login 🔓</Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RecentWorkout')}>
+    <Text style={styles.buttonText}>Submit Recent Workout 🏃‍♂️</Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PersonalChallengeButton')}>
+    <Text style={styles.buttonText}>My Current Challenges 🏃‍♀️</Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NewChal')}>
+    <Text style={styles.buttonText}>Start new challenge 🎯</Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Leaderboard')}>
+    <Text style={styles.buttonText}>Weekly/friends leaderboards 🏆</Text>
+  </TouchableOpacity>
+</View>
+</SafeAreaView>
+);
+
     <View style={styles.container}>
 
 <Phoenix />
@@ -44,37 +84,44 @@ const HomeScreen = ({ navigation }) => {
 };
 
 
-
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#f5f5f5',
-        marginBottom: 100
-      },
-      title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 10,
-      },
-      subtitle: {
-        fontSize: 18,
-        color: '#555',
+      flex: 1,
+      backgroundColor: '#002131',
+      padding: 20,
+    },
+    header: {
+      marginBottom: 130,
+      alignItems: 'center',
+    },
+    headerText: {
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: '#fff',
+      marginBottom: 40,
+      marginTop: 30
+    },
+    subHeaderText: {
+      fontSize: 20,
+      color: '#fff',
+    },
+    buttonContainer: {
+      width: '100%',
+      alignItems: 'center',
     },
     button: {
-      backgroundColor: '#87CEEB',
+      backgroundColor: '#6495ED',
       paddingVertical: 15,
       paddingHorizontal: 30,
       borderRadius: 10,
+      marginVertical: 10,
+      width: '85%',
       alignItems: 'center',
-      justifyContent: 'center',
-  
     },
     buttonText: {
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: 'bold',
-      color: '#000000',
+      color: '#fff',
     },
 })
 

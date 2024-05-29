@@ -12,6 +12,7 @@ import PersonalChallengeButton from './src/CurrentChallenges';
 import MyAccountButton from './src/MyAccount';
 import NewChal from './src/NewChallenge';
 import AgainstSelfScreen from './src/AgainstSelf';
+import MyAccountScreen from './src/MyAccountScreen';
 
 const Stack = createStackNavigator();
 
@@ -75,6 +76,13 @@ export default function App() {
           name="Dashboard"
           component={Dashboard}
           options={{ title: 'Dashboard' }}
+          containerStyle={styles.screenContainer}
+        />
+
+         <Stack.Screen
+          name="MyAccountScreen"
+          component={MyAccountScreen}
+          options={{ title: 'MyAccountScreen' }}
           containerStyle={styles.screenContainer}
         />
 

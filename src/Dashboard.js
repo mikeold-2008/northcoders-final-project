@@ -6,7 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Phoenix from './Phoenix';
 import { getUsers } from '../api';
 
-const Dashboard = ({navigation}) => {
+
+const Dashboard = ({ navigation }) => {
     const [userId,setUserId] = useState(null)
     const [userFirstName, setUserFirstName] = useState("")
 
@@ -37,7 +38,7 @@ return (<>
         onPress={() => navigation.navigate('PersonalChallengeButton')} />
 
  <Button title={'Start new challenge'}
-        onPress={() => navigation.navigate('NewChallenge')} />
+        onPress={() => navigation.navigate('NewChal')} />
 
 <Button title={'Weekly/friends leaderboards'}
         onPress={() => navigation.navigate('Leaderboard')} /> 
