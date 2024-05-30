@@ -149,8 +149,8 @@ const Leaderboard = ({navigation}) => {
     const renderLeaderBoard = ({ item }) => (
         <View style={styles.item}>
           <Text style={styles.name}>{item.firstName}</Text>
-          <Text style={styles.score}>{item.lastName}</Text>
-          <Text style={styles.score}>{item.Total}</Text>
+          <Text style={styles.name}>{item.lastName}</Text>
+          <Text style={styles.score}>{item.Total}km</Text>
         </View>
       );
 
@@ -165,16 +165,18 @@ const Leaderboard = ({navigation}) => {
 
   return (
     
-    <View style={styles.container}>
-    <View style={styles.topComponent}>
-      <Text style={styles.title}>Weekly Leaderboard</Text>
-    </View>
+    <View >
 
-    <Button title={`My Account`}
-          onPress={() => navigation.navigate('MyAccountScreen')} /> 
-    
-    <Text style={styles.header}>Top Walkers This Week (km)</Text>
-    <FlatList
+
+    {/* <View style={styles.topComponent}>
+      <Text style={styles.title}>Weekly Leaderboard</Text>
+    </View> */}
+
+
+    <View style={styles.topComponent}>
+    <Text style={styles.header}>Top Walkers This Week</Text>
+    </View>
+    <FlatList style={styles.container}
       data={walkingLeaderBoard}
       renderItem={renderLeaderBoard}
       keyExtractor={(item) => item.activity_id.toString()}
@@ -182,34 +184,42 @@ const Leaderboard = ({navigation}) => {
     />
 
 
-{cyclingLeaderBoard.length===0 ? <Text></Text> : <><Text style={styles.header}>Top Cyclists This Week (km)</Text>
-<FlatList
+{cyclingLeaderBoard.length===0 ? <Text></Text> : <>
+
+<View style={styles.topComponent}>
+<Text style={styles.header}>Top Cyclists This Week</Text>
+</View>
+<FlatList style={styles.container} 
       data={cyclingLeaderBoard}
       renderItem={renderLeaderBoard}
       keyExtractor={(item) => item.activity_id.toString()}
       contentContainerStyle={styles.list}
     /></>
 }
-<Text style={styles.header}>Top Runners This Week (km)</Text>
-<FlatList
+<View style={styles.topComponent}>
+<Text style={styles.header}>Top Runners This Week</Text>
+</View>
+<FlatList style={styles.container}
       data={runningLeaderBoard}
       renderItem={renderLeaderBoard}
       keyExtractor={(item) => item.activity_id.toString()}
       contentContainerStyle={styles.list}
     />
 
-    {/* <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id.toString()}
-      contentContainerStyle={styles.list}
-    /> */}
+
+<Button style={styles.button} title={`My Account`}
+          onPress={() => navigation.navigate('MyAccountScreen')} />
+          
   </View>
   
 );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#002131',
+    color: '#fff'
+  },
   list: {
     padding: 20,
   },
@@ -222,24 +232,28 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20,
+    color: '#fff'
   },
   score: {
-    fontSize: 18,
+    fontSize: 20,
+    color: '#fff'
   },
   topComponent: {
-    backgroundColor: 'lightblue',
+    // backgroundColor: 'lightblue',
+    backgroundColor: '#6495ED',
     padding: 20,
     fontSize: 50,
   },
   header:{
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#fff'
   },
-  Button:{
-  top: 0,
-  right: 1,
+  button:{
   padding: 10,
-  alignItems: 'right',
+},
+leaderboard:{
+
 }
 });
 

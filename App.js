@@ -49,7 +49,7 @@ export default function App() {
          <Stack.Screen
           name="Leaderboard"
           component={Leaderboard}
-          options={{ title: 'Leaderboard' }}
+          options={{ title: 'Weekly Leaderboard' }}
           containerStyle={styles.screenContainer}
         />
            <Stack.Screen
