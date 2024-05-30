@@ -1,62 +1,68 @@
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
-import { useState,useEffect } from 'react';
-import { getUsers } from '../api';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Button, Platform, Alert, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import WeeklyStepChallenge from '../components/WeeklyStepChallenge';
+import AppleHealthKit from 'react-native-health';
 
-const MyAccountScreen = ({navigation}) => {
-  const [userId,setUserId] = useState(null)
-  const [userFirstName, setUserFirstName] = useState("")
-  const [userLastName, setUserLastName] = useState("")
-  const [userEmail, setUserEmail] = useState("")
+const MyAccountScreen = ({ navigation }) => {
+  const [userId, setUserId] = useState(null);
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
-
-  const removeSavedUserData = async () => {
+  const loadUserData = async () => {
     try {
-      await AsyncStorage.removeItem('userData')
-
-    } catch(e) {
-      console.log("error trying to remove previous user data",e)
+      let id = await AsyncStorage.getItem("userData");
+      if (id !== null) {
+        setUserId(JSON.parse(id).id);
+        let data = await getUsers(JSON.parse(id).id);
+        setUserFirstName(data.firstName);
+        setUserLastName(data.lastName);
+        setUserEmail(data.email);
+      }
+    } catch (error) {
+      Alert.alert("Error", "Failed to load user data");
     }
-  }
+  };
 
-  const load = async () =>{
-    try{
-      let id = await AsyncStorage.getItem("userData")
-      setUserId(JSON.parse(id).id)
-      let data = await getUsers(JSON.parse(id).id)
-      setUserFirstName(data.firstName)
-      setUserLastName(data.lastName)
-      setUserEmail(data.email)
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
+  const requestHealthKitPermissions = () => {
+    const permissions = {
+      permissions: {
+        read: [AppleHealthKit.Constants.Permissions.HeartRate],
+        write: [AppleHealthKit.Constants.Permissions.Steps],
+      },
+    };
+
+    AppleHealthKit.initHealthKit(permissions, (error) => {
+      if (error) {
+        Alert.alert('Error', 'Cannot grant permissions!');
+      } else {
+        Alert.alert('Success', 'HealthKit permissions granted successfully!');
+      }
+    });
+  };
+
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem('userData');
+      navigation.navigate('Home');
+    } catch (error) {
+      Alert.alert('Error', 'Failed to logout');
     }
-    catch(err){
-      alert(err)
-    }
-}
-
-useEffect(()=>{
-    load()
-},[])
-
-
-  const handleLogout = () =>{
-    removeSavedUserData()
-    navigation.navigate('Home')
-  }
-
-
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>My Account</Text>
       <Text style={styles.summaryText}>Name: {userFirstName} {userLastName}</Text>
-      <Text style={styles.summaryText}>Email: {userEmail} </Text>
+      <Text style={styles.summaryText}>Email: {userEmail}</Text>
 
-      <Text style={styles.summaryText}>My Current Challenges:  </Text>
-      {/* <WeeklyStepChallenge /> */}
-
-
+      <TouchableOpacity onPress={requestHealthKitPermissions} style={styles.healthKitButton}>
+        <Text style={styles.buttonText}>Connect Health</Text>
+      </TouchableOpacity>
 
       <Button title='Logout' onPress={handleLogout} />
     </View>
@@ -67,28 +73,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  summaryText:{
-    fontSize: 24
+  summaryText: {
+    fontSize: 18,
+    marginBottom: 10,
   },
-  button: {
-    backgroundColor: '#6495ED',
+  healthKitButton: {
+    backgroundColor: '#87CEEB',
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
-    marginVertical: 10,
-    width: '85%',
-    alignItems: 'center',
-    justifyContent: 'center',
-
+    marginTop: 20,
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#000000',
   },
