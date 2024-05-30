@@ -11,9 +11,9 @@ const Card = ({ data, index }) => {
     <View
       style={{
         flex: 1,
-        width: 120, 
-        height: 180,
+        height: index === 1 ? 180 : 150,
         padding: 10,
+        alignSelf: 'center',
         backgroundColor: data.color,
         justifyContent: 'space-between',
         marginHorizontal: 8,
@@ -80,7 +80,7 @@ const CardApp = () => {
   const data = [
     {
       name: 'Cycling',
-      status: 85,
+      status: 85, 
       image: cycle,
       lightColor: '#f8e4d9',
       color: '#fcf1ea',
@@ -88,7 +88,7 @@ const CardApp = () => {
     },
     {
       name: 'Walking',
-      status: 25,
+      status: 45, 
       image: walk,
       lightColor: '#d7f0f7',
       color: '#e8f7fc',
@@ -96,7 +96,7 @@ const CardApp = () => {
     },
     {
       name: 'Yoga',
-      status: 85,
+      status: 60, 
       image: yoga,
       lightColor: '#dad5fe',
       color: '#e7e3ff',
@@ -106,7 +106,7 @@ const CardApp = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
         {data.map((item, index) => (
           <Card key={index} data={item} index={index} />
         ))}
@@ -118,12 +118,13 @@ const CardApp = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#002131',
-    paddingTop: -100,
+    backgroundColor: '#fff',
+  },
+  scrollView: {
+    paddingHorizontal: 8,
   },
 });
 
 export default CardApp;
+
+

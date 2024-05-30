@@ -16,6 +16,7 @@ import CreateDuoChallenge from './src/DuoChallengeCreate';
 import DuoChallenge from './src/DuoCurrentChallenge';
 import CreateSoloChallenge from './src/SoloChallengeCreate';
 import SoloUserChallenge from './src/SoloCurrentChallenge';
+import CardApp from './src/dummyData';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -103,6 +104,10 @@ export default function App() {
         <Stack.Screen 
         name="SoloCurrentChallenge" 
         component={SoloUserChallenge} />
+        
+        <Stack.Screen 
+        name="ExerciseCards" 
+        component={CardApp} />
 
       </Stack.Navigator>
     </NavigationContainer>
