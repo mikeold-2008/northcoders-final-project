@@ -184,7 +184,7 @@ const Leaderboard = ({navigation}) => {
     />
 
 
-{cyclingLeaderBoard.length===0 ? <Text></Text> : <>
+{/* {cyclingLeaderBoard.length===0 ? <Text></Text> : <>
 
 <View style={styles.topComponent}>
 <Text style={styles.header}>Top Cyclists This Week</Text>
@@ -195,14 +195,14 @@ const Leaderboard = ({navigation}) => {
       keyExtractor={(item) => item.activity_id.toString()}
       contentContainerStyle={styles.list}
     /></>
-}
+} */}
 <View style={styles.topComponent}>
 <Text style={styles.header}>Top Runners This Week</Text>
 </View>
 <FlatList style={styles.container}
       data={runningLeaderBoard}
       renderItem={renderLeaderBoard}
-      keyExtractor={(item) => item.activity_id.toString()}
+      keyExtractor={(item) => item.Total.toString()}
       contentContainerStyle={styles.list}
     />
 
