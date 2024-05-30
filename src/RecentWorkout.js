@@ -19,7 +19,7 @@ import MyAccountButton from "./MyAccount";
 import axios from "axios";
 import Dropdown from "./Dropdown";
 
-const RecentWorkout = () => {
+const RecentWorkout = ({navigation}) => {
   const [recentActivities, setRecentActivities] = useState([]);
   const [addActivity, setAddActivity] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -99,6 +99,7 @@ const RecentWorkout = () => {
       <View>
         <Text style={styles.title}>History</Text>
         {/* <MyAccountButton onPress={() => navigation.navigate("MyAccount")} /> */}
+
         {recentActivities.length ? (
           <FlatList
             data={recentActivities}

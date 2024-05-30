@@ -9,11 +9,13 @@ import LoginForm from './src/Login';
 import Leaderboard from './src/Leaderboard';
 import Dashboard from './src/Dashboard'
 import PersonalChallengeButton from './src/CurrentChallenges';
-import MyAccountButton from './src/MyAccount';
 import NewChal from './src/NewChallenge';
 import AgainstSelfScreen from './src/AgainstSelf';
 import MyAccountScreen from './src/MyAccountScreen';
-
+import CreateDuoChallenge from './src/DuoChallengeCreate';
+import DuoChallenge from './src/DuoCurrentChallenge';
+import CreateSoloChallenge from './src/SoloChallengeCreate';
+import SoloUserChallenge from './src/SoloCurrentChallenge';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -56,12 +58,12 @@ export default function App() {
           options={{ title: 'PersonalChallengeButton' }}
           containerStyle={styles.screenContainer}
         />
-           <Stack.Screen
+           {/* <Stack.Screen
           name="MyAccountButton"
           component={MyAccountButton}
           options={{ title: 'MyAccountButton' }}
           containerStyle={styles.screenContainer}
-        />
+        /> */}
         <Stack.Screen
           name="NewChal"
           component={NewChal}
@@ -71,6 +73,18 @@ export default function App() {
         <Stack.Screen 
         name="AgainstSelf" 
         component={AgainstSelfScreen} />
+
+        <Stack.Screen 
+        name="AgainstFriend" 
+        component={CreateDuoChallenge} />
+
+        <Stack.Screen 
+        name="CurrentDuoChallenge" 
+        component={DuoChallenge} />
+
+        <Stack.Screen 
+        name="CreateSoloChallenge" 
+        component={CreateSoloChallenge} />
                     
         <Stack.Screen
           name="Dashboard"
@@ -85,6 +99,10 @@ export default function App() {
           options={{ title: 'MyAccountScreen' }}
           containerStyle={styles.screenContainer}
         />
+
+        <Stack.Screen 
+        name="SoloCurrentChallenge" 
+        component={SoloUserChallenge} />
 
       </Stack.Navigator>
     </NavigationContainer>

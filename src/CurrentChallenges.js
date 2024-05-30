@@ -4,16 +4,31 @@ import MyAccountButton from './MyAccount';
 import SoloUserCallenge from './SoloCurrentChallenge';
 
 
-  const PersonalChallengeButton = ({ score, status, onPress }) => {
+  const PersonalChallengeButton = ({ score, status, onPress, navigation }) => {
     return (
       <View style={styles.container}>
-        <MyAccountButton onPress={() => navigation.navigate('MyAccount')} />
-        <TouchableOpacity onPress={onPress} style={styles.button}>
+        
+    <Button title={`My Account`}
+          onPress={() => navigation.navigate('MyAccountScreen')} /> 
+
+        {/* <TouchableOpacity onPress={onPress} style={styles.button}>
           <Text style={styles.buttonText}>My Personal Challenge</Text>
           <Text style={styles.scoreText}>Score: {score}</Text>
           <Text style={styles.statusText}>Status: {status}</Text>
         </TouchableOpacity>
-        <SoloUserCallenge />
+        <SoloUserCallenge /> */}
+
+
+        <Button
+        onPress={() => navigation.navigate('SoloCurrentChallenge')}
+        title="Current Solo Challenge"
+      />
+
+
+        <Button
+        onPress={() => navigation.navigate('CurrentDuoChallenge')}
+        title="Current Duo Challenge"
+      />
       </View>
     );
   };
