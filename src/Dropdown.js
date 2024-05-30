@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import RNPickerSelect from "react-native-picker-select";
-import { View, Text } from "react-native";
+import { Alert, View, Text, StyleSheet } from "react-native";
 
-const Dropdown = () => {
-  const [selectedValue, setSelectedValue] = useState("");
-  const placeholder = { label: "select an activity", value: "" };
+const Dropdown = (props) => {
+  const { setExerciseName, exerciseName } = props;
+  // const [selectedValue, setSelectedValue] = useState("");
+  const placeholder = { label: "Hiking", value: "hiking" };
   const options = [
     { label: "Running", value: "running" },
     { label: "Cycling", value: "cycling" },
@@ -12,16 +13,30 @@ const Dropdown = () => {
   ];
   return (
     <View>
-      <Text>Select an activity</Text>
+      <Text style={styles.text}>Work out</Text>
       <RNPickerSelect
         placeholder={placeholder}
         items={options}
-        onValueChange={(value) => setSelectedValue(value)}
-        value={selectedValue}
+        onValueChange={(value) => {
+          setExerciseName(value);
+        }}
+        value={exerciseName}
+        style={styles.dropdown}
       />
-      {selectedValue && <Text>Selected: {selectedValue}</Text>}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  dropdown: {
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  text: {
+    fontSize: 18,
+    marginBottom: 10,
+    marginTop: 20,
+  },
+});
 
 export default Dropdown;

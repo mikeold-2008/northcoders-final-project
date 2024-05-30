@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { TextInputMask } from "react-native-masked-text";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
   Text,
@@ -11,17 +13,51 @@ import {
   TextInput,
   TouchableOpacity,
   Modal,
+  Pressable,
 } from "react-native";
 import MyAccountButton from "./MyAccount";
 import axios from "axios";
 import Dropdown from "./Dropdown";
-import { inline } from "react-native-web/dist/cjs/exports/StyleSheet/compiler";
 
 const RecentWorkout = () => {
   const [recentActivities, setRecentActivities] = useState([]);
   const [addActivity, setAddActivity] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [newActivity, setNewActivity] = useState({});
+  const [duration, setDuration] = useState("");
+  const [date, setDate] = useState("");
+  const [km, setKm] = useState(0);
+  const [exerciseName, setExerciseName] = useState("");
+
+  const [userId, setUserId] = useState(null);
+
+  const load = async () => {
+    try {
+      let id = await AsyncStorage.getItem("userData");
+      setUserId(JSON.parse(id).id);
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  const submitActivity = () => {
+    axios
+      .patch(
+        `https://trailblaze-api-prod.onrender.com/activities/user/${userId}`,
+        {
+          exercise_name: exerciseName,
+          user_id: userId,
+          duration: duration,
+          completed_at: date,
+        }
+      )
+      .then((newlyAddedActivity) => {
+        setRecentActivities([...recentActivities, newlyAddedActivity]);
+      });
+  };
 
   const handleAddActivity = () => {
     setAddActivity(true);
@@ -29,7 +65,7 @@ const RecentWorkout = () => {
 
   useEffect(() => {
     axios
-      .get("https://trailblaze-api-prod.onrender.com/activities/user/10")
+      .get(`https://trailblaze-api-prod.onrender.com/activities/user/10`)
       .then((fetchedActivity) => {
         setRecentActivities(fetchedActivity.data);
       });
@@ -46,7 +82,7 @@ const RecentWorkout = () => {
   const renderItem = ({ item }) => (
     <Item
       exercise_name={item.exercise_name}
-      distance={`${item.distance / 1000} km`}
+      distance={`${item.distance} km`}
       created_at={item.created_at}
     />
   );
@@ -62,8 +98,7 @@ const RecentWorkout = () => {
     <SafeAreaView style={styles.container}>
       <View>
         <Text style={styles.title}>History</Text>
-        <MyAccountButton onPress={() => navigation.navigate("MyAccount")} />
-
+        {/* <MyAccountButton onPress={() => navigation.navigate("MyAccount")} /> */}
         {recentActivities.length ? (
           <FlatList
             data={recentActivities}
@@ -73,7 +108,9 @@ const RecentWorkout = () => {
         ) : null}
 
         <TouchableOpacity onPress={openModal}>
-          <Text>+ Add Exercises touchable opacity</Text>
+          <Text style={{ backgroundColor: "lightblue", fontSize: 20 }}>
+            + Add Workout
+          </Text>
         </TouchableOpacity>
         <Modal
           visible={modalVisible}
@@ -84,32 +121,67 @@ const RecentWorkout = () => {
             <Text>Add new workout</Text>
             <View style={styles.newActivityContainer}>
               <View style={styles.newActivityProperty}>
-                <Dropdown />
+                <Dropdown
+                  setExerciseName={setExerciseName}
+                  exerciseName={exerciseName}
+                />
               </View>
               <View style={styles.newActivityProperty}>
-                <Text>km</Text>
+                <Text>Km</Text>
                 <TextInput
-                  placeholder="km"
-                  style={styles.textInput}
+                  onChangeText={(text) => setKm(text)}
+                  placeholder="0"
+                  style={styles.distanceInput}
                 ></TextInput>
               </View>
+              <View style={styles.newActivityProperty}>
+                <Text>Date</Text>
+                <TextInputMask
+                  stype={styles.textInputMask}
+                  type={"datetime"}
+                  options={{ format: "MM/DD/YYYY" }}
+                  placeholder={"MM/DD/YYYY"}
+                  value={date}
+                  placeholderTextColor="grey"
+                  keyboardType="numeric"
+                  onChangeText={(text) => {
+                    setDate(text);
+                  }}
+                />
+              </View>
+
               <View style={styles.newActivityProperty}>
                 <Text>Time</Text>
-                <TextInput
-                  placeholder="time"
-                  style={styles.textInput}
-                ></TextInput>
+                <TextInputMask
+                  style={styles.textInputMask}
+                  type={"datetime"}
+                  options={{ format: "HH:mm:ss" }}
+                  placeholder={"HH:mm:ss"}
+                  value={duration}
+                  placeholderTextColor="grey"
+                  keyboardType="numeric"
+                  onChangeText={(text) => {
+                    setDuration(text);
+                  }}
+                />
               </View>
             </View>
           </SafeAreaView>
-          <Button
-            title="Finish"
+          <Pressable
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "rgb(210, 230, 255)" : "lightblue",
+              },
+              styles.wrapperCustom,
+            ]}
             onPress={() => {
               Alert.alert("worked out added");
             }}
-          />
-          <TouchableOpacity onPress={closeModal}>
-            <Text>Cancle</Text>
+          >
+            <Text style={{ fontSize: 15, color: "#fff" }}>FINISH</Text>
+          </Pressable>
+          <TouchableOpacity onPress={closeModal} style={styles.cancel}>
+            <Text style={{ color: "red", fontSize: 15 }}>CANCEL</Text>
           </TouchableOpacity>
         </Modal>
       </View>
@@ -131,20 +203,40 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-  subtitle: {
-    fontSize: 18,
-    color: "#555",
-  },
-  textInput: {
-    fontSize: 18,
+  distanceInput: {
+    fontSize: 20,
     color: "blue",
     borderWidth: 2,
     margin: 10,
   },
+  //history each workout is an item
   item: {
     borderWidth: 2,
     marginBottom: 8,
   },
+  cancel: {
+    padding: 10,
+    alignItems: "center",
+    backgroundColor: "lightpink",
+  },
+  finish: {
+    alignItems: "center",
+    padding: 10,
+  },
+  wrapperCustom: {
+    paddding: 10,
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  textInputMask: {
+    borderColor: "black",
+    alignItems: "center",
+    backgroundColor: "yellow",
+    marginBottom: 10,
+    padding: 10,
+  },
+
   // newActivityContainer: {
   //   flex: 1,
   //   flexDirection: "row",
