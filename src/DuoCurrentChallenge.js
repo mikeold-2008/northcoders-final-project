@@ -76,7 +76,7 @@ const DuoChallenge = () => {
     }
 
     return (
-       <View style={styles.container}>
+        <View style={styles.container}>
         {duoChallenge.map((duo, index) => (
             <View key={index}>
                 <Text key={duo.challenge_proposer_name}style={styles.text}>{duo.challenge_proposer_name} vs. {duo.challenge_accepter_name}</Text>
@@ -107,6 +107,8 @@ const DuoChallenge = () => {
           </View>
     </View>
     </ImageBackground>
+
+
         </View>
     );
 };
