@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 
-function Phoenix() {
+function walk() {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('./assets/phoenix-cc0.gif')} 
+        source={require('../assets/walk.png')} 
         style={styles.gif} 
         resizeMode="contain"
       />
@@ -20,10 +20,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   gif: {
-    width: 110,
-    height: 110,
+    width: 300,
+    height: 100,
   },
 });
 
-export default Phoenix;
-
+export default walk;
