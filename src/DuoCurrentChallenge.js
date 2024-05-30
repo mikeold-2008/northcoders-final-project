@@ -44,7 +44,7 @@ const DuoChallenge = () => {
         try {
             const response = await getDuo(userId);
             setDuoChallenge(response);
-            console.log(response)
+            // console.log(response)
             setChallengeId(response[0].dual_challenge_id)
             if(response[0].challenge_proposer_id===userId){
                 setYourProgress(response[0].challenge_proposer_progress)
@@ -76,18 +76,14 @@ const DuoChallenge = () => {
     }
 
     return (
-        <View style={styles.container}>
-            {duoChallenge.map((duo,index) => 
-            {
-                console.log(duo.exercise_name)
-                return (<>
-                <Text style={styles.text}>{duo.challenge_proposer_name} vs. {duo.challenge_accepter_name}
-                </Text>
-                <Text key={index} style={styles.text}>
-                    Exercise: {duo.exercise_name}</Text>
-                <Text style={styles.text}>Your score: {yourProgress}km {" "} | {" "} {opponentName}'s score: {opponentProgress}km</Text> </>)
-            })
-            }
+       <View style={styles.container}>
+        {duoChallenge.map((duo, index) => (
+            <View key={index}>
+                <Text key={duo.challenge_proposer_name}style={styles.text}>{duo.challenge_proposer_name} vs. {duo.challenge_accepter_name}</Text>
+                <Text key={duo.exercise_name}style={styles.text}>Exercise: {duo.exercise_name}</Text>
+                <Text key={yourProgress}style={styles.text}>Your score: {yourProgress} km | {opponentName}'s score: {opponentProgress} km</Text>
+            </View>
+        ))}
             
             <ImageBackground 
         source={require('../assets/track.jpg')}
@@ -111,11 +107,12 @@ const DuoChallenge = () => {
           </View>
     </View>
     </ImageBackground>
-
-
         </View>
     );
 };
+
+
+
 
 const styles = StyleSheet.create({
     container: {
