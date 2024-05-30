@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#002131',
     paddingHorizontal: 20, 
     paddingBottom: 20, 
   },
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 40, 
     textAlign: 'center',
+    color: '#fff',
   },
   button: {
     backgroundColor: '#6495ED',
