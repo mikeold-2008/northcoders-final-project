@@ -5,6 +5,7 @@ import { useState,useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Phoenix from './Phoenix';
 import { getUsers } from '../api';
+import BottomTab from './BottomButton';
 
 
 const Dashboard = ({ navigation }) => {
@@ -57,9 +58,10 @@ const Dashboard = ({ navigation }) => {
         <Text style={styles.buttonText}>{`${userFirstName}'s account 🔐`}</Text>
       </TouchableOpacity>
     </SafeAreaView>
+    
   );
 };
-
+<BottomTab />
 const styles = StyleSheet.create({
   container: {
     flex: 1,
