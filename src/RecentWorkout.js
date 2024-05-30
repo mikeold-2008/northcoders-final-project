@@ -19,7 +19,7 @@ import MyAccountButton from "./MyAccount";
 import axios from "axios";
 import Dropdown from "./Dropdown";
 
-const RecentWorkout = ({navigation}) => {
+const RecentWorkout = () => {
   const [recentActivities, setRecentActivities] = useState([]);
   const [addActivity, setAddActivity] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -97,29 +97,43 @@ const RecentWorkout = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Text style={styles.title}>History</Text>
-        {/* <MyAccountButton onPress={() => navigation.navigate("MyAccount")} /> */}
+        <View>
+          <Text style={styles.title}>History</Text>
+          {/* <MyAccountButton onPress={() => navigation.navigate("MyAccount")} /> */}
+          {recentActivities.length ? (
+            <FlatList
+              style={{ flex: 1, width: 380, marginLeft: 20 }}
+              data={recentActivities}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.activity_id}
+            />
+          ) : null}
 
-        {recentActivities.length ? (
-          <FlatList
-            data={recentActivities}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.activity_id}
-          />
-        ) : null}
+          <TouchableOpacity onPress={openModal}>
+            <Text
+              style={{
+                backgroundColor: "#6495ED",
+                fontSize: 20,
+                textAlign: "center",
+                width: 380,
+                marginLeft: 20,
+                padding: 10,
+                marginTop: 30,
+                color: "white",
+                fontWeight: "bold",
+              }}
+            >
+              + Add Workout
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity onPress={openModal}>
-          <Text style={{ backgroundColor: "lightblue", fontSize: 20 }}>
-            + Add Workout
-          </Text>
-        </TouchableOpacity>
         <Modal
           visible={modalVisible}
           animationType="slide"
           onRequestClose={closeModal}
         >
           <SafeAreaView>
-            <Text>Add new workout</Text>
             <View style={styles.newActivityContainer}>
               <View style={styles.newActivityProperty}>
                 <Dropdown
@@ -202,7 +216,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 20,
+    marginLeft: 20,
+    marginTop: 20,
+    color: "#6495ED",
   },
   distanceInput: {
     fontSize: 20,
@@ -214,6 +231,10 @@ const styles = StyleSheet.create({
   item: {
     borderWidth: 2,
     marginBottom: 8,
+    paddingLeft: 5,
+    borderRadius: 4,
+    paddingBottom: 5,
+    paddingTop: 5,
   },
   cancel: {
     padding: 10,
@@ -238,15 +259,16 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-  // newActivityContainer: {
-  //   flex: 1,
-  //   flexDirection: "row",
-  //   justifyContent: "space-between",
-  //   alignItems: "flex-start",
-  // },
-  // newActivityProperty: {
-  //   height: 100,
-  // },
+  newActivityContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+  },
+
+  newActivityProperty: {
+    height: 100,
+    width: 300,
+  },
 });
 
 export default RecentWorkout;
