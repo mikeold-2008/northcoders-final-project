@@ -11,7 +11,7 @@ const Card = ({ data, index }) => {
     <View
       style={{
         flex: 1,
-        width: 150, // Define a fixed width for each card
+        width: 120, 
         height: 180,
         padding: 10,
         backgroundColor: data.color,
@@ -118,7 +118,11 @@ const CardApp = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#002131',
+    paddingTop: -100,
   },
 });
 

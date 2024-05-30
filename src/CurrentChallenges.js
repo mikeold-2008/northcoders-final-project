@@ -2,96 +2,29 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import MyAccountButton from './MyAccount';
 import SoloUserCallenge from './SoloCurrentChallenge';
+import CardApp from './dummyData';
 
 
   const PersonalChallengeButton = ({ score, status, onPress, navigation }) => {
-    // return (
-    //   <View style={styles.container}>
-        
-    // <Button title={`My Account`}
-    //       onPress={() => navigation.navigate('MyAccountScreen')} /> 
-
-        {/* <TouchableOpacity onPress={onPress} style={styles.button}>
-          <Text style={styles.buttonText}>My Personal Challenge</Text>
-          <Text style={styles.scoreText}>Score: {score}</Text>
-          <Text style={styles.statusText}>Status: {status}</Text>
-        </TouchableOpacity>
-        <SoloUserCallenge /> */}
-
-
-//         <Button
-//         onPress={() => navigation.navigate('SoloCurrentChallenge')}
-//         title="Current Solo Challenge"
-//       />
-
-
-//         <Button
-//         onPress={() => navigation.navigate('CurrentDuoChallenge')}
-//         title="Current Duo Challenge"
-//       />
-//       </View>
-//     );
-//   };
-
-// const styles = StyleSheet.create({
-//     button: {
-//       backgroundColor: '#007bff',
-//       padding: 10,
-//       borderRadius: 5,
-//       alignItems: 'center',
-//       justifyContent: 'center',
-//       marginTop: 100,
-//     },
-//     buttonText: {
-//       color: '#fff',
-//       fontSize: 30,
-//       fontWeight: 'bold',
-//       marginBottom: 5,
-//     },
-//     scoreText: {
-//       color: '#fff',
-//       fontSize: 20,
-//       marginBottom: 5,
-//     },
-//     statusText: {
-//       color: '#fff',
-//       fontSize: 20,
-//     },
-//     usernameButton: {
-//         backgroundColor: '#007bff',
-//         padding: 10,
-//         borderRadius: 5,
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         marginBottom: 10,
-//       },
-//       usernameText: {
-//         color: '#fff',
-//         fontSize: 16,
-//         fontWeight: 'bold',
-//       },
-//   });
-
-
-//   export default PersonalChallengeButton;
 
 return (
+  
   <View style={styles.container}>
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MyAccountScreen')}>
+      <CardApp style={styles.card}/> 
+    <View style={styles.row}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SoloCurrentChallenge')}>
+        <Text style={styles.buttonText}>Current Solo Challenge</Text>
+      </TouchableOpacity>
+
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CurrentDuoChallenge')}>
+        <Text style={styles.buttonText}>Current Duo Challenge</Text>
+      </TouchableOpacity>
+    </View>
+
+    <TouchableOpacity style={styles.accountButton} onPress={() => navigation.navigate('MyAccountScreen')}>
       <Text style={styles.buttonText}>My Account</Text>
-    </TouchableOpacity>
-
-    <Button
-      onPress={() => navigation.navigate('SoloCurrentChallenge')}
-      title="Current Solo Challenge"
-      style={styles.button}
-    />
-
-    <Button
-      onPress={() => navigation.navigate('CurrentDuoChallenge')}
-      title="Current Duo Challenge"
-      style={styles.button}
-    />
+    </TouchableOpacity> 
   </View>
 );
 };
@@ -102,22 +35,35 @@ container: {
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#002131',
-  marginBottom: 100,
 },
-button: {
-  backgroundColor: '#007bff',
+row: {
+  flexDirection: 'row',
+  marginBottom: 10,
+},
+accountButton: {
+  backgroundColor: '#6495ED',
   padding: 10,
   borderRadius: 5,
   alignItems: 'center',
   justifyContent: 'center',
-  marginBottom: 10,
-  width: '85%',
+},
+button: {
+  backgroundColor: '#007bff',
+  padding: 20,
+  borderRadius: 5,
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginRight: 10,
 },
 buttonText: {
   color: '#fff',
   fontSize: 20,
   fontWeight: 'bold',
 },
+card: {
+  padding: 20,
+  marginBottom: -100,
+}
 });
 
 export default PersonalChallengeButton;
