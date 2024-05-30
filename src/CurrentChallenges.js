@@ -10,17 +10,20 @@ import CardApp from './dummyData';
 return (
   
   <View style={styles.container}>
-      <CardApp style={styles.card}/> 
     <View style={styles.row}>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SoloCurrentChallenge')}>
         <Text style={styles.buttonText}>Current Solo Challenge</Text>
       </TouchableOpacity>
 
-
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CurrentDuoChallenge')}>
         <Text style={styles.buttonText}>Current Duo Challenge</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ExerciseCards')}>
+        <Text style={styles.buttonText}>Current Synced Data</Text>
+      </TouchableOpacity>
     </View>
+    
 
     <TouchableOpacity style={styles.accountButton} onPress={() => navigation.navigate('MyAccountScreen')}>
       <Text style={styles.buttonText}>My Account</Text>
