@@ -4,7 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { postSolo } from '../api';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const CreateSoloChallenge = ({ onChallenge }) => {
+
+// { onChallenge }
+const CreateSoloChallenge = () => {
     const [user_id, setUser_id] = useState(null);
     const [exerciseName, setExerciseName] = useState('walking');
     const [duration, setDuration] = useState(7);
@@ -34,7 +36,7 @@ const CreateSoloChallenge = ({ onChallenge }) => {
         try {
             await postSolo(user_id, exerciseName, duration, distance);
             setMessage('Challenge created');
-            onChallenge();
+            // onChallenge();
         } catch (error) {
             console.error(error);
             setMessage('Challenge created');

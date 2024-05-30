@@ -1,6 +1,6 @@
 import React from 'react';
 import UserDetails from './getUsersComponent';
-import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image, TouchableOpacity } from 'react-native';
 import { useState,useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Phoenix from './Phoenix';
@@ -27,78 +27,66 @@ const Dashboard = ({ navigation }) => {
         load()
     },[])
 
+  return (
 
-    return (<>
-      <View style={styles.container}>
-        <Text style={styles.whiteText}>Welcome {userFirstName}!</Text>
-        <Text>
-  {'\n'}
-  {'\n'}</Text>
+
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.whiteText}>Welcome {userFirstName}!</Text>
+     
+      <Text>{'\n'}</Text>
       <Phoenix />
-      <Text>
-  {'\n'}</Text>
-  <Button title={'Submit Recent Workout 🏃‍♂️'}
-          onPress={() => navigation.navigate('RecentWorkout')} />
-  
-  <Button title={'My Current Challenges 🏃‍♀️'}
-          onPress={() => navigation.navigate('PersonalChallengeButton')} />
-  
-   <Button title={'Start new challenge 🎯'}
-          onPress={() => navigation.navigate('NewChal')} />
-  
-  <Button title={'Leaderboard 🏆'}
-          onPress={() => navigation.navigate('Leaderboard')} /> 
-  
-  
-  <Button title={`${userFirstName}'s account 🔐`}
-          onPress={() => navigation.navigate('MyAccountScreen')} /> 
-  
-  </View></>
-  )
-  
-  }
-  
-  
-  const styles = StyleSheet.create({
-      container: {
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#002131',
-          marginBottom: 100
-          
-        },
-        whiteText: {
-          color: '#fff',
-          fontSize: 20,
-        },
-        title: {
-          fontSize: 24,
-          fontWeight: 'bold',
-          marginBottom: 10,
-        },
-        subtitle: {
-          fontSize: 18,
-          color: '#000000',
-      },
-      button: {
-        backgroundColor: '#6495ED',
-        paddingVertical: 15,
-        paddingHorizontal: 30,
-        borderRadius: 10,
-        marginVertical: 10,
-        width: '85%',
-        alignItems: 'center',
-        justifyContent: 'center',
-    
-      },
-      buttonText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#000000',
-      },
-  })
-  
-  
-  
-  export default Dashboard
+      <Text>{'\n'}</Text>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RecentWorkout')}>
+        <Text style={styles.buttonText}>Submit Recent Workout 🏃‍♂️</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PersonalChallengeButton')}>
+        <Text style={styles.buttonText}>My Current Challenges 🏃‍♀️</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NewChal')}>
+        <Text style={styles.buttonText}>Start new challenge 🎯</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Leaderboard')}>
+        <Text style={styles.buttonText}>Leaderboard 🏆</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MyAccountScreen')}>
+        <Text style={styles.buttonText}>{`${userFirstName}'s account 🔐`}</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#002131',
+    marginBottom: 0,
+  },
+  whiteText: {
+    color: '#fff',
+    fontSize: 20,
+  },
+  button: {
+    backgroundColor: '#6495ED',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    marginVertical: 10,
+    width: '85%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+});
+
+export default Dashboard;

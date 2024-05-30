@@ -5,11 +5,11 @@ import SoloUserCallenge from './SoloCurrentChallenge';
 
 
   const PersonalChallengeButton = ({ score, status, onPress, navigation }) => {
-    return (
-      <View style={styles.container}>
+    // return (
+    //   <View style={styles.container}>
         
-    <Button title={`My Account`}
-          onPress={() => navigation.navigate('MyAccountScreen')} /> 
+    // <Button title={`My Account`}
+    //       onPress={() => navigation.navigate('MyAccountScreen')} /> 
 
         {/* <TouchableOpacity onPress={onPress} style={styles.button}>
           <Text style={styles.buttonText}>My Personal Challenge</Text>
@@ -19,58 +19,105 @@ import SoloUserCallenge from './SoloCurrentChallenge';
         <SoloUserCallenge /> */}
 
 
-        <Button
-        onPress={() => navigation.navigate('SoloCurrentChallenge')}
-        title="Current Solo Challenge"
-      />
+//         <Button
+//         onPress={() => navigation.navigate('SoloCurrentChallenge')}
+//         title="Current Solo Challenge"
+//       />
 
 
-        <Button
-        onPress={() => navigation.navigate('CurrentDuoChallenge')}
-        title="Current Duo Challenge"
-      />
-      </View>
-    );
-  };
+//         <Button
+//         onPress={() => navigation.navigate('CurrentDuoChallenge')}
+//         title="Current Duo Challenge"
+//       />
+//       </View>
+//     );
+//   };
+
+// const styles = StyleSheet.create({
+//     button: {
+//       backgroundColor: '#007bff',
+//       padding: 10,
+//       borderRadius: 5,
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//       marginTop: 100,
+//     },
+//     buttonText: {
+//       color: '#fff',
+//       fontSize: 30,
+//       fontWeight: 'bold',
+//       marginBottom: 5,
+//     },
+//     scoreText: {
+//       color: '#fff',
+//       fontSize: 20,
+//       marginBottom: 5,
+//     },
+//     statusText: {
+//       color: '#fff',
+//       fontSize: 20,
+//     },
+//     usernameButton: {
+//         backgroundColor: '#007bff',
+//         padding: 10,
+//         borderRadius: 5,
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//         marginBottom: 10,
+//       },
+//       usernameText: {
+//         color: '#fff',
+//         fontSize: 16,
+//         fontWeight: 'bold',
+//       },
+//   });
+
+
+//   export default PersonalChallengeButton;
+
+return (
+  <View style={styles.container}>
+    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MyAccountScreen')}>
+      <Text style={styles.buttonText}>My Account</Text>
+    </TouchableOpacity>
+
+    <Button
+      onPress={() => navigation.navigate('SoloCurrentChallenge')}
+      title="Current Solo Challenge"
+      style={styles.button}
+    />
+
+    <Button
+      onPress={() => navigation.navigate('CurrentDuoChallenge')}
+      title="Current Duo Challenge"
+      style={styles.button}
+    />
+  </View>
+);
+};
 
 const styles = StyleSheet.create({
-    button: {
-      backgroundColor: '#007bff',
-      padding: 10,
-      borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: 100,
-    },
-    buttonText: {
-      color: '#fff',
-      fontSize: 30,
-      fontWeight: 'bold',
-      marginBottom: 5,
-    },
-    scoreText: {
-      color: '#fff',
-      fontSize: 20,
-      marginBottom: 5,
-    },
-    statusText: {
-      color: '#fff',
-      fontSize: 20,
-    },
-    usernameButton: {
-        backgroundColor: '#007bff',
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 10,
-      },
-      usernameText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold',
-      },
-  });
+container: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#002131',
+  marginBottom: 100,
+},
+button: {
+  backgroundColor: '#007bff',
+  padding: 10,
+  borderRadius: 5,
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginBottom: 10,
+  width: '85%',
+},
+buttonText: {
+  color: '#fff',
+  fontSize: 20,
+  fontWeight: 'bold',
+},
+});
 
-
-  export default PersonalChallengeButton;
+export default PersonalChallengeButton;
