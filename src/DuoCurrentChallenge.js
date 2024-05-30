@@ -1,19 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image, TextInput, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getDuo } from '../api';
+import { getDuo,PatchTwoPersonChallengeProgress, PatchTwoPersonChallengeWinner } from '../api';
 
 const DuoChallenge = () => {
     const [userId, setUserId] = useState(null);
     const [duoChallenge, setDuoChallenge] = useState(null);
-
+    const [challengeId,setChallengeId] = useState(null)
+    const [yourProgress, setYourProgress] = useState(null)
+    const [opponentProgress,setOpponentProgress] = useState(null)
+    const [opponentName, setOpponentName] = useState(null)
     const [steps, setSteps] = useState(0);
     const [spritePosition, setSpritePosition] = useState(0)
 
     const handleMove = () => {
     const newSteps = parseInt(steps, 10);
-    const newPosition = (newSteps / 70000) * 100;
+    const newPosition = (newSteps / 10) * 100;
     setSpritePosition(newPosition);
+    console.log(challengeId,userId)
+    PatchTwoPersonChallengeProgress(challengeId,userId,newSteps)
+    .then((response)=>{
+        console.log(response)
+        setYourProgress((currProgress)=>{
+            return currProgress + newSteps
+        })
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
 
 }
 
@@ -31,6 +45,17 @@ const DuoChallenge = () => {
             const response = await getDuo(userId);
             setDuoChallenge(response);
             console.log(response)
+            setChallengeId(response[0].dual_challenge_id)
+            if(response[0].challenge_proposer_id===userId){
+                setYourProgress(response[0].challenge_proposer_progress)
+                setOpponentProgress(response[0].challenge_accepter_progress)
+                setOpponentName(response[0].challenge_accepter_name)
+            }
+            else if(response[0].challenge_accepter_id===userId){
+                setYourProgress(response[0].challenge_accepter_progress)
+                setOpponentProgress(response[0].challenge_proposer_progress)
+                setOpponentName(response[0].challenge_proposer_name)
+            }
         } catch (error) {
             console.error(error);
         }
@@ -60,7 +85,7 @@ const DuoChallenge = () => {
                 </Text>
                 <Text key={index} style={styles.text}>
                     Exercise: {duo.exercise_name}</Text>
-                </>)
+                <Text style={styles.text}>Your score: {yourProgress}km {" "} | {" "} {opponentName}'s score: {opponentProgress}km</Text> </>)
             })
             }
             
@@ -73,7 +98,7 @@ const DuoChallenge = () => {
             source={require('../assets/Walking.png')} 
             style={[styles.sprite, { left: `${spritePosition}%` }]} 
           />
-     <Text style={styles.text}>Step Challenge!</Text>
+     <Text style={styles.text}>Enter the number of km you've walked!</Text>
       <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}

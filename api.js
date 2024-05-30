@@ -114,6 +114,53 @@ const getAllActivities = async() =>{
   }
 }
 
+const PatchSoloChallengeProgress = async (challenge_id, progress) =>{
+  return axios.patch(`https://trailblaze-api-prod.onrender.com/challenges/solo/${challenge_id}/progress`, {
+    progress: progress,
+  }).then((response) => {
+    return response;
+  })
+  .catch((err) => {
+    throw err;
+  });
+}
 
 
-export { getUsers, getAuthUser, postSoloChallenge, getSolo, postUser, getDuo, postDuo, postSolo, getAllActivities };
+const PatchSoloChallengePass = async (challenge_id, bool) =>{
+
+  return axios.patch(`https://trailblaze-api-prod.onrender.com/challenges/solo/${challenge_id}`, {
+    pass: bool,
+  }).then((response) => {
+    return response;
+  })
+  .catch((err) => {
+    throw err;
+  });
+}
+
+
+const PatchTwoPersonChallengeProgress = async (challenge_id,user_id, progress) =>{
+  return axios.patch(`https://trailblaze-api-prod.onrender.com/challenges/dual/${challenge_id}/progress`, {
+    user_id: user_id,
+    progress: progress
+  }).then((response) => {
+    return response;
+  })
+  .catch((err) => {
+    throw err;
+  });
+}
+
+const PatchTwoPersonChallengeWinner = async (challenge_id,winner_id) =>{
+  return axios.patch(`https://trailblaze-api-prod.onrender.com/challenges/dual/${challenge_id}/winner`, {
+    winner_id: winner_id,
+  }).then((response) => {
+    return response;
+  })
+  .catch((err) => {
+    throw err;
+  });
+}
+
+
+export { getUsers, getAuthUser, postSoloChallenge, getSolo, postUser, getDuo, postDuo, postSolo, getAllActivities, PatchSoloChallengeProgress, PatchSoloChallengePass, PatchTwoPersonChallengeProgress, PatchTwoPersonChallengeWinner };
