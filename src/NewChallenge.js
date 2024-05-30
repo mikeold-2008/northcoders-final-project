@@ -30,17 +30,22 @@ const NewChal = ({navigation}) => {
 
 
     return (
-      <SafeAreaView style={styles.container}>
-            
-    <Button title={`My Account`}
-          onPress={() => navigation.navigate('MyAccountScreen')} /> 
-
+      <SafeAreaView style={styles.container}> 
+        
+        <TouchableOpacity
+        style={styles.accountButton}
+        onPress={() => navigation.navigate('MyAccountScreen')}
+      >
+             <Text style={styles.accountButtonText}>My Account</Text>
+      </TouchableOpacity>
+      
         <View>
           <Text style={styles.title}>
-          {'\n'}
-            {'\n'}
-            {userFirstName}'s New Challenges 🎯  {'\n'}
-            {'\n'}
+          {/* {'\n'}
+            {'\n'} */}
+            {userFirstName}'s New Challenges 🎯 
+             {/* {'\n'} */}
+            {/* {'\n'} */}
             
             {/* <Button
         onPress={() => { alert('Button pressed!'); }}
@@ -52,7 +57,7 @@ const NewChal = ({navigation}) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CreateSoloChallenge')}>
-                    <Text style={styles.buttonText}>Against self</Text>
+                    <Text style={styles.buttonText}>   Against self  </Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -66,28 +71,44 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f5f5f5',
-        marginBottom: 100
+        marginBottom: 50,
       },
       title: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 10,
+        marginBottom: 450,
+        textAlign: 'center',
       },
       subtitle: {
         fontSize: 18,
         color: '#555',
     },
-    button: {
+      button: {
         backgroundColor: '#6495ED',
+        paddingVertical: 15,
+        paddingHorizontal: 120,
+        borderRadius: 10,
+        marginVertical: 10,
+        width: '100%',
+        alignItems: 'center',
+      },
+      buttonText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#fff',
+      },
+      accountButton: {
+        backgroundColor: '#6495ED',
+        top: -20,
+        left: 100,
         paddingVertical: 15,
         paddingHorizontal: 30,
         borderRadius: 10,
         marginVertical: 10,
-        width: '85%',
         alignItems: 'center',
-        justifyContent: 'center',
+        width: '45%',
       },
-      buttonText: {
+      accountButtonText: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#fff',
