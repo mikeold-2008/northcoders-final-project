@@ -1,6 +1,5 @@
 import React from 'react';
-import UserDetails from './getUsersComponent';
-import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useState,useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Phoenix from './Phoenix';
@@ -39,7 +38,7 @@ const Dashboard = ({ navigation }) => {
       <Text>{'\n'}</Text>
 
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RecentWorkout')}>
-        <Text style={styles.buttonText}>Submit Recent Workout 🏃‍♂️</Text>
+        <Text style={styles.buttonText}>Recent Workouts 🏃‍♂️</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PersonalChallengeButton')}>

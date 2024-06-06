@@ -1,9 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
-import MyAccountButton from './MyAccount';
 import { getAllActivities, getUsers } from '../api';
 import {useEffect,useState} from 'react';
-import MyAccountScreen from './MyAccountScreen';
 
 
 const Leaderboard = ({navigation}) => {
@@ -23,7 +21,7 @@ const Leaderboard = ({navigation}) => {
       setActivityList(response)
     })
     .catch((error)=>{
-      console.log(error)
+      throw error;
     })
   },[])
 
@@ -39,10 +37,8 @@ const Leaderboard = ({navigation}) => {
 
     activityList.forEach((activity)=>{
       let createdAt = new Date(activity.created_at)
-      //get number of days between activity created and today
       let difference = today.getTime() - createdAt.getTime()
       difference = difference/(1000*60*60*24)
-      //we are only going to get activities from last 7 days
       if(difference < 7){
 
         if(activity.exercise_name === "walking"){
@@ -61,7 +57,7 @@ const Leaderboard = ({navigation}) => {
           })
           })
           .catch((error)=>{
-            console.log(error)
+            throw error;
           })
         }
 
@@ -81,7 +77,7 @@ const Leaderboard = ({navigation}) => {
           })
           })
           .catch((error)=>{
-            console.log(error)
+            throw error;
           })
         }
 
@@ -101,7 +97,7 @@ const Leaderboard = ({navigation}) => {
           })
           })
           .catch((error)=>{
-            console.log(error)
+            throw error;
           })
         }
       }
@@ -112,7 +108,6 @@ const Leaderboard = ({navigation}) => {
     let sortedWalks = walkingList.sort(function(a,b){
       return a.Total - b.Total
     })
-    console.log(sortedWalks)
 
 
     let sortedRuns = runningList.sort(function(a,b){
@@ -130,20 +125,6 @@ const Leaderboard = ({navigation}) => {
 
 
   }
-
-
-    // const data = [
-    //     { id: 1, name: 'Player1', score: 100 },
-    //     { id: 2, name: 'Player2', score: 90 },
-    //     { id: 3, name: 'Player3', score: 80 },
-    //     { id: 4, name: 'Player4', score: 70 },
-    //     { id: 5, name: 'Player5', score: 60 },
-    //     { id: 6, name: 'Player6', score: 100 },
-    //     { id: 7, name: 'Player7', score: 90 },
-    //     { id: 8, name: 'Player8', score: 80 },
-    //     { id: 9, name: 'Player9', score: 70 },
-    //     { id: 10, name: 'Player10', score: 60 },
-    //   ];
 
 
     const renderLeaderBoard = ({ item }) => (
@@ -166,13 +147,6 @@ const Leaderboard = ({navigation}) => {
   return (
     
     <View >
-
-
-    {/* <View style={styles.topComponent}>
-      <Text style={styles.title}>Weekly Leaderboard</Text>
-    </View> */}
-
-
     <View style={styles.topComponent}>
     <Text style={styles.header}>Top Walkers This Week</Text>
     </View>
@@ -184,18 +158,7 @@ const Leaderboard = ({navigation}) => {
     />
 
 
-{/* {cyclingLeaderBoard.length===0 ? <Text></Text> : <>
 
-<View style={styles.topComponent}>
-<Text style={styles.header}>Top Cyclists This Week</Text>
-</View>
-<FlatList style={styles.container} 
-      data={cyclingLeaderBoard}
-      renderItem={renderLeaderBoard}
-      keyExtractor={(item) => item.activity_id.toString()}
-      contentContainerStyle={styles.list}
-    /></>
-} */}
 <View style={styles.topComponent}>
 <Text style={styles.header}>Top Runners This Week</Text>
 </View>
@@ -207,8 +170,6 @@ const Leaderboard = ({navigation}) => {
     />
 
 
-<Button style={styles.button} title={`My Account`}
-          onPress={() => navigation.navigate('MyAccountScreen')} />
           
   </View>
   
@@ -239,7 +200,6 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   topComponent: {
-    // backgroundColor: 'lightblue',
     backgroundColor: '#6495ED',
     padding: 20,
     fontSize: 50,

@@ -1,6 +1,5 @@
 import React from 'react';
-import UserDetails from './getUsersComponent';
-import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useState,useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Phoenix from './Phoenix';
@@ -45,22 +44,6 @@ const HomeScreen = ({ navigation }) => {
     <Text style={styles.buttonText}>Login 🔓</Text>
   </TouchableOpacity>
 
-
-  {/* <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RecentWorkout')}>
-    <Text style={styles.buttonText}>Submit Recent Workout 🏃‍♂️</Text>
-  </TouchableOpacity>
-
-  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PersonalChallengeButton')}>
-    <Text style={styles.buttonText}>My Current Challenges 🏃‍♀️</Text>
-  </TouchableOpacity>
-
-  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NewChal')}>
-    <Text style={styles.buttonText}>Start new challenge 🎯</Text>
-  </TouchableOpacity>
-
-  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Leaderboard')}>
-    <Text style={styles.buttonText}>Weekly/friends leaderboards 🏆</Text>
-  </TouchableOpacity> */}
 </View>
 </SafeAreaView>
 );  

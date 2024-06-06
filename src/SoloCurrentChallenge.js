@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet,  ImageBackground, Image, TextInput, Button } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import { getSolo, PatchSoloChallengeProgress, PatchSoloChallengePass } from '../api';
 
 const SoloUserChallenge = () => {
@@ -26,14 +26,14 @@ const SoloUserChallenge = () => {
         })
     })
     .catch((err)=>{
-        console.log(error)
+        throw err;
     })
     if((progress+newSteps)>=distance){
         PatchSoloChallengePass(challengeId,true).then((response)=>{
             setChallengePass(true)
         })
         .catch((error)=>{
-            console.log(error)
+            throw error
         })
     }
     }
@@ -43,7 +43,7 @@ const SoloUserChallenge = () => {
             const id = await AsyncStorage.getItem("userData");
             setUserId(JSON.parse(id).id)
         } catch (error) {
-            console.error(error);
+            throw error
         }
     };
 
@@ -56,7 +56,7 @@ const SoloUserChallenge = () => {
             setProgress(response[0].progress)
             setChallengePass(response[0].pass)
         } catch (error) {
-            console.error(error);
+            throw error
         }
     };
 
@@ -81,7 +81,6 @@ const SoloUserChallenge = () => {
 
 
             {soloUser.map((solo,index) => {        
-                console.log(solo.exercise_name)
                 return (<><Text key={index} style={styles.text}>
                     Exercise: {solo.exercise_name}</Text>
                     <Text style={styles.text}>Target: {distance} km</Text>

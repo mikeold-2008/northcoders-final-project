@@ -63,7 +63,7 @@ const CreateDuoChallenge = ({ onChallenge }) => {
             </View>
             <TextInput
                 style={styles.input}
-                placeholder="Acceptor Id"
+                placeholder="Friend's user ID number"
                 value={acceptorId}
                 onChangeText={setAcceptorId}
             />

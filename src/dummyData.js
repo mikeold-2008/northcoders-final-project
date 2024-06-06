@@ -118,10 +118,10 @@ const CardApp = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  scrollView: {
-    paddingHorizontal: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#002131',
+    paddingTop: -100,
   },
 });
 

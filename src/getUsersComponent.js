@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Button, Alert, Image } from 'react-native';
+import { Text } from 'react-native';
 import getUsers from '../api';
 
 
@@ -8,7 +8,6 @@ const UserDetails = () => {
 useEffect(() => {
     getUsers()
     .then(response => {
-        console.log(response)
         setUsers(response)
     })
     .catch(error => {

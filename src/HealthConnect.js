@@ -16,7 +16,6 @@ const HealthKitComponent = () => {
   const requestPermissionsAndFetchData = () => {
     AppleHealthKit.initHealthKit(permissions, (initError) => {
       if (initError) {
-        console.log('[ERROR] Cannot grant permissions!');
         setError('Cannot grant permissions!');
       } else {
         const options = {
@@ -25,10 +24,8 @@ const HealthKitComponent = () => {
 
         AppleHealthKit.getHeartRateSamples(options, (callbackError, results) => {
           if (callbackError) {
-            console.log('[ERROR] Cannot get heart rate samples!');
             setError('Cannot get heart rate samples!');
           } else {
-            console.log('Heart rate samples:', results);
             setHeartRateSamples(results);
           }
         });
