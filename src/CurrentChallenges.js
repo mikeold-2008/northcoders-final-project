@@ -7,13 +7,11 @@ import { Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 
 return (
   
+
   <SafeAreaView style={styles.container}>
-      {/* <CardApp style={styles.card}/>  */}
-    
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SoloCurrentChallenge')}>
         <Text style={styles.buttonText}>Current Solo Challenge</Text>
       </TouchableOpacity>
-
 
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CurrentDuoChallenge')}>
         <Text style={styles.buttonText}>Current Vs. Challenge</Text>
