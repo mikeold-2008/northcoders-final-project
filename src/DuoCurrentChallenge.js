@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image, TextInput, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getDuo,PatchTwoPersonChallengeProgress, PatchTwoPersonChallengeWinner } from '../api';
+import { getDuo,PatchTwoPersonChallengeProgress } from '../api';
 
 const DuoChallenge = () => {
     const [userId, setUserId] = useState(null);
@@ -17,16 +17,14 @@ const DuoChallenge = () => {
     const newSteps = parseInt(steps, 10);
     const newPosition = (newSteps / 10) * 100;
     setSpritePosition(newPosition);
-    console.log(challengeId,userId)
     PatchTwoPersonChallengeProgress(challengeId,userId,newSteps)
     .then((response)=>{
-        console.log(response)
         setYourProgress((currProgress)=>{
             return currProgress + newSteps
         })
     })
     .catch((error)=>{
-        console.log(error)
+        throw error
     })
 
 }
@@ -36,7 +34,7 @@ const DuoChallenge = () => {
             const id = await AsyncStorage.getItem("userData");
             setUserId(JSON.parse(id).id)
         } catch (error) {
-            console.error(error);
+            throw error
         }
     };
 
@@ -44,7 +42,6 @@ const DuoChallenge = () => {
         try {
             const response = await getDuo(userId);
             setDuoChallenge(response);
-            // console.log(response)
             setChallengeId(response[0].dual_challenge_id)
             if(response[0].challenge_proposer_id===userId){
                 setYourProgress(response[0].challenge_proposer_progress)
@@ -57,7 +54,7 @@ const DuoChallenge = () => {
                 setOpponentName(response[0].challenge_proposer_name)
             }
         } catch (error) {
-            console.error(error);
+            throw error;
         }
     };
 

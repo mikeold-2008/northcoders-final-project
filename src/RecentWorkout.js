@@ -6,16 +6,13 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
-  Button,
   Alert,
-  Image,
   FlatList,
   TextInput,
   TouchableOpacity,
   Modal,
   Pressable,
 } from "react-native";
-import MyAccountButton from "./MyAccount";
 import axios from "axios";
 import Dropdown from "./Dropdown";
 
@@ -72,10 +69,10 @@ const RecentWorkout = () => {
   }, []);
 
   const Item = ({ exercise_name, distance, created_at }) => (
-    <View key={created_at} style={styles.item}>
-      <Text>{created_at.substring(0, 10)}</Text>
-      <Text>{exercise_name}</Text>
-      <Text>{distance}</Text>
+    <View key={created_at} style={styles.itemContainer}>
+      <Text style={styles.item}>{created_at.substring(0, 10)}</Text>
+      <Text style={styles.item}>{exercise_name}</Text>
+      <Text style={styles.item}>{distance}</Text>
     </View>
   );
 
@@ -99,7 +96,6 @@ const RecentWorkout = () => {
       <View>
         <View>
           <Text style={styles.title}>History</Text>
-          {/* <MyAccountButton onPress={() => navigation.navigate("MyAccount")} /> */}
           {recentActivities.length ? (
             <FlatList
               style={{ flex: 1, width: 380, marginLeft: 20 }}
@@ -109,23 +105,6 @@ const RecentWorkout = () => {
             />
           ) : null}
 
-          <TouchableOpacity onPress={openModal}>
-            <Text
-              style={{
-                backgroundColor: "#6495ED",
-                fontSize: 20,
-                textAlign: "center",
-                width: 380,
-                marginLeft: 20,
-                padding: 10,
-                marginTop: 30,
-                color: "white",
-                fontWeight: "bold",
-              }}
-            >
-              + Add Workout
-            </Text>
-          </TouchableOpacity>
         </View>
 
         <Modal
@@ -207,11 +186,18 @@ const RecentWorkout = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
     backgroundColor: "#f5f5f5",
     marginBottom: 100,
     marginTop: 20,
+  },
+  itemContainer: {
+    borderWidth: 2,
+    marginBottom: 8,
+    paddingLeft: 5,
+    borderRadius: 4,
+    paddingBottom: 5,
+    paddingTop: 5,
+    fontSize: 15
   },
   title: {
     fontSize: 24,
@@ -229,12 +215,11 @@ const styles = StyleSheet.create({
   },
   //history each workout is an item
   item: {
-    borderWidth: 2,
     marginBottom: 8,
     paddingLeft: 5,
-    borderRadius: 4,
     paddingBottom: 5,
     paddingTop: 5,
+    fontSize: 15
   },
   cancel: {
     padding: 10,

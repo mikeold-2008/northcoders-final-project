@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//GET https://trailblaze-api-prod.onrender.com/users/:id
+
 
 
 const getUsers = async (id) => {
@@ -15,20 +15,19 @@ const getUsers = async (id) => {
 
 }
 
-//GET https://trailblaze-api-prod.onrender.com/users/auth/:email/:token
+
 
 const getAuthUser = async (email, token) => {
     try {
         const response = await axios.get(`https://trailblaze-api-prod.onrender.com/users/auth/${email}/${token}`);
         return response.data;
     } catch (error) {
-      console.log(error)
-        throw new Error;
+      throw error; 
     }
 
 };
 
-//POST https://trailblaze-api-prod.onrender.com/challenges/solo
+
 
 const postSoloChallenge = (ChallengeData) => {
     return axios
@@ -37,7 +36,7 @@ const postSoloChallenge = (ChallengeData) => {
         return response.data
     })
     .catch(error => {
-        (error)
+      throw error; 
     })
 }
 
@@ -48,19 +47,18 @@ const getSolo = (id) => {
      return response.data
     })
     .catch(error => {
-      (error)
+      throw error; 
     })
 }
 
 
 
 const postUser = async (userData) => {
- // console.log("in post user function", userData);
+
   try {
       const response = await axios.post(`https://trailblaze-api-prod.onrender.com/users/`,userData);
       return response.data;
   } catch (error) {
-      //console.error(error);
       throw error; 
   }
 }
@@ -72,7 +70,7 @@ const getDuo = (id) => {
      return response.data
     })
     .catch(error => {
-      (error)
+      throw error; 
     })
 }
 
@@ -85,8 +83,8 @@ const postDuo = (proposer_id, accepter_id, exercise_name, duration) => {
   }).then((response) => {
     return response;
   })
-  .catch((err) => {
-    console.log(err);
+  .catch((error) => {
+    throw error; 
   });
 };
 
@@ -99,8 +97,8 @@ const postSolo = (user_id, exercise_name, duration, distance) => {
   }).then((response) => {
     return response;
   })
-  .catch((err) => {
-    console.log(err);
+  .catch((error) => {
+    throw error; 
   });
 };
 
@@ -120,8 +118,8 @@ const PatchSoloChallengeProgress = async (challenge_id, progress) =>{
   }).then((response) => {
     return response;
   })
-  .catch((err) => {
-    throw err;
+  .catch((error) => {
+    throw error; 
   });
 }
 
@@ -133,8 +131,8 @@ const PatchSoloChallengePass = async (challenge_id, bool) =>{
   }).then((response) => {
     return response;
   })
-  .catch((err) => {
-    throw err;
+  .catch((error) => {
+    throw error; 
   });
 }
 
@@ -146,8 +144,8 @@ const PatchTwoPersonChallengeProgress = async (challenge_id,user_id, progress) =
   }).then((response) => {
     return response;
   })
-  .catch((err) => {
-    throw err;
+  .catch((error) => {
+    throw error;
   });
 }
 
@@ -157,8 +155,8 @@ const PatchTwoPersonChallengeWinner = async (challenge_id,winner_id) =>{
   }).then((response) => {
     return response;
   })
-  .catch((err) => {
-    throw err;
+  .catch((error) => {
+    throw error;
   });
 }
 

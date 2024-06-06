@@ -25,8 +25,8 @@ const SignUpForm = ({  navigation  }) => {
     try {
       await AsyncStorage.removeItem('userData')
 
-    } catch(e) {
-      console.log("error trying to remove previous user data",e)
+    } catch(error) {
+      throw error;
     }
   }
 
@@ -87,7 +87,7 @@ const SignUpForm = ({  navigation  }) => {
         navigation.navigate('Dashboard')
       })
       .catch((error)=>{
-        console.log(error)
+        throw error;
       })
     })
     .catch((error)=>{

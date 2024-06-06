@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { HomeScreen } from './src/HomeScreen';
@@ -25,7 +25,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'Fitness App Home' }}
+          options={{  }}
           containerStyle={styles.screenContainer}
         />
         <Stack.Screen
@@ -55,15 +55,9 @@ export default function App() {
            <Stack.Screen
           name="PersonalChallengeButton"
           component={PersonalChallengeButton}
-          options={{ title: 'PersonalChallengeButton' }}
+          options={{ title: 'Challenges' }}
           containerStyle={styles.screenContainer}
         />
-           {/* <Stack.Screen
-          name="MyAccountButton"
-          component={MyAccountButton}
-          options={{ title: 'MyAccountButton' }}
-          containerStyle={styles.screenContainer}
-        /> */}
         <Stack.Screen
           name="NewChal"
           component={NewChal}

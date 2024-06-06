@@ -5,7 +5,6 @@ import { postSolo } from '../api';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-// { onChallenge }
 const CreateSoloChallenge = () => {
     const [user_id, setUser_id] = useState(null);
     const [exerciseName, setExerciseName] = useState('walking');
@@ -36,10 +35,8 @@ const CreateSoloChallenge = () => {
         try {
             await postSolo(user_id, exerciseName, duration, distance);
             setMessage('Challenge created');
-            // onChallenge();
         } catch (error) {
-            console.error(error);
-            setMessage('Challenge created');
+            throw error;
         }
     };
 

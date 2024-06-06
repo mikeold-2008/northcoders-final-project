@@ -1,10 +1,8 @@
-import React, { useState } from "react";
 import RNPickerSelect from "react-native-picker-select";
-import { Alert, View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const Dropdown = (props) => {
   const { setExerciseName, exerciseName } = props;
-  // const [selectedValue, setSelectedValue] = useState("");
   const placeholder = { label: "Hiking", value: "hiking" };
   const options = [
     { label: "Running", value: "running" },
